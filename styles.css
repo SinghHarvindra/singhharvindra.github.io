@@ -210,6 +210,12 @@ em, i { font-style: italic; }
   color: var(--color-accent);
   letter-spacing: 0.02em;
 }
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .quick-info {
   font-size: 0.88rem;
   color: var(--color-text-soft);
