@@ -1,1088 +1,1845 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr. Harvindra Singh — Applied Mathematics, IIT Ropar</title>
-<meta name="description" content="Dr. Harvindra Singh — ANRF National Post-Doctoral Fellow at IIT Ropar. Research in spectral methods, numerical analysis of nonlinear PDEs, and computational fluid dynamics.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    /* Light, refined academic palette */
-    --bg:          #F7F4ED;       /* warm parchment */
-    --bg-soft:     #FBF9F4;       /* lighter wash */
-    --surface:     #FFFFFF;       /* cards */
-    --surface-2:   #F0EBE0;       /* subtle highlight */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Harvindra Singh — Applied Mathematics, IIT Ropar</title>
+  <meta name="description"
+    content="Dr. Harvindra Singh — ANRF National Post-Doctoral Fellow at IIT Ropar. Research in spectral methods, numerical analysis of nonlinear PDEs, and computational fluid dynamics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* Light, refined academic palette */
+      --bg: #F7F4ED;
+      /* warm parchment */
+      --bg-soft: #FBF9F4;
+      /* lighter wash */
+      --surface: #FFFFFF;
+      /* cards */
+      --surface-2: #F0EBE0;
+      /* subtle highlight */
 
-    --ink:         #1A2438;       /* deep navy text */
-    --ink-soft:    #4A546A;       /* secondary text */
-    --ink-mute:    #7A8294;       /* tertiary text */
+      --ink: #1A2438;
+      /* deep navy text */
+      --ink-soft: #4A546A;
+      /* secondary text */
+      --ink-mute: #7A8294;
+      /* tertiary text */
 
-    --primary:     #1E3A5F;       /* scholarly navy */
-    --primary-2:   #2D5283;       /* lighter navy */
-    --accent:      #8C6A3A;       /* refined bronze */
-    --accent-soft: #B89564;       /* lighter bronze */
-    --sage:        #5A7B6F;       /* muted sage for variety */
+      --primary: #1E3A5F;
+      /* scholarly navy */
+      --primary-2: #2D5283;
+      /* lighter navy */
+      --accent: #8C6A3A;
+      /* refined bronze */
+      --accent-soft: #B89564;
+      /* lighter bronze */
+      --sage: #5A7B6F;
+      /* muted sage for variety */
 
-    --border:      #E2DCCC;       /* warm border */
-    --border-soft: #EFEAE0;
-    --shadow-sm:   0 1px 2px rgba(26,36,56,0.04), 0 2px 6px rgba(26,36,56,0.04);
-    --shadow-md:   0 4px 12px rgba(26,36,56,0.06), 0 2px 4px rgba(26,36,56,0.04);
-    --shadow-lg:   0 12px 32px rgba(26,36,56,0.08), 0 4px 8px rgba(26,36,56,0.04);
+      --border: #E2DCCC;
+      /* warm border */
+      --border-soft: #EFEAE0;
+      --shadow-sm: 0 1px 2px rgba(26, 36, 56, 0.04), 0 2px 6px rgba(26, 36, 56, 0.04);
+      --shadow-md: 0 4px 12px rgba(26, 36, 56, 0.06), 0 2px 4px rgba(26, 36, 56, 0.04);
+      --shadow-lg: 0 12px 32px rgba(26, 36, 56, 0.08), 0 4px 8px rgba(26, 36, 56, 0.04);
 
-    --radius-sm: 6px;
-    --radius:    10px;
-    --radius-lg: 16px;
-  }
+      --radius-sm: 6px;
+      --radius: 10px;
+      --radius-lg: 16px;
+    }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    line-height: 1.7;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--ink-mute); }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* ─── NAV ─────────────────────────────────── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    padding: 18px 48px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(247, 244, 237, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    transition: padding 0.3s, background 0.3s;
-  }
-  nav.scrolled { padding: 12px 48px; background: rgba(247, 244, 237, 0.98); }
-  .nav-brand {
-    font-family: 'Fraunces', serif;
-    font-size: 1.05rem; font-weight: 500;
-    color: var(--ink); text-decoration: none;
-    display: flex; align-items: center; gap: 12px;
-    letter-spacing: -0.01em;
-  }
-  .nav-brand .mark {
-    width: 32px; height: 32px;
-    border: 1.5px solid var(--primary);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 0.78rem; font-weight: 600;
-    color: var(--primary);
-    background: var(--surface);
-  }
-  .nav-links { display: flex; gap: 4px; list-style: none; }
-  .nav-links a {
-    color: var(--ink-soft); text-decoration: none;
-    font-size: 0.82rem; letter-spacing: 0.02em; font-weight: 500;
-    padding: 8px 14px; border-radius: var(--radius-sm);
-    transition: all 0.2s;
-  }
-  .nav-links a:hover { color: var(--primary); background: var(--surface-2); }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-  /* ─── HERO ─────────────────────────────────── */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 130px 0 90px;
-    position: relative;
-  }
-  /* subtle background ornament */
-  .hero::before {
-    content: ''; position: absolute; top: 15%; right: -120px;
-    width: 360px; height: 360px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(140,106,58,0.08) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .hero::after {
-    content: ''; position: absolute; bottom: 10%; left: -100px;
-    width: 320px; height: 320px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(30,58,95,0.06) 0%, transparent 65%);
-    pointer-events: none;
-  }
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
 
-  .container { max-width: 1180px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 2; }
-  .hero-inner { display: grid; grid-template-columns: 1fr 360px; gap: 80px; align-items: center; }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
 
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent); font-weight: 600; margin-bottom: 24px;
-  }
-  .hero-eyebrow::before {
-    content: ''; display: block; width: 32px; height: 1.5px;
-    background: var(--accent);
-  }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 10px;
+    }
 
-  .hero-name {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2.8rem, 5.5vw, 5rem);
-    font-weight: 400; line-height: 1.05; letter-spacing: -0.025em;
-    color: var(--ink); margin-bottom: 16px;
-  }
-  .hero-name em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 500;
-  }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--ink-mute);
+    }
 
-  .hero-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.25rem; font-weight: 400; font-style: italic;
-    color: var(--ink-soft); margin-bottom: 28px; line-height: 1.5;
-  }
-  .hero-desc {
-    font-size: 1rem; color: var(--ink-soft); max-width: 560px; margin-bottom: 32px;
-    line-height: 1.8;
-  }
+    /* ─── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(247, 244, 237, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s, background 0.3s;
+    }
 
-  .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
-  .badge {
-    padding: 6px 14px; font-size: 0.75rem; font-weight: 500;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    border-radius: 999px; color: var(--ink-soft);
-    transition: all 0.2s;
-  }
-  .badge:hover { border-color: var(--accent); color: var(--accent); }
+    nav.scrolled {
+      padding: 12px 48px;
+      background: rgba(247, 244, 237, 0.98);
+    }
 
-  .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 12px 22px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.01em;
-    text-decoration: none; border-radius: var(--radius-sm);
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-  }
-  .btn-primary {
-    background: var(--primary); color: var(--bg-soft);
-    box-shadow: var(--shadow-sm);
-  }
-  .btn-primary:hover { background: var(--primary-2); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-  .btn-outline {
-    background: var(--surface); color: var(--ink);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-sm);
-  }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-  .btn svg { width: 16px; height: 16px; }
+    .nav-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: -0.01em;
+    }
 
-  /* ─── PROFILE CARD ─────────────────────────────────── */
-  .profile-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 40px 32px;
-    text-align: center;
-    box-shadow: var(--shadow-md);
-    position: relative;
-  }
-  .profile-card::before {
-    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 64px; height: 3px;
-    background: var(--accent); border-radius: 0 0 4px 4px;
-  }
-   .profile-photo {
-  width: 340px;
-  height:340px;
-  max-width: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center 25%;
-  margin: 8px auto 22px;
-  display: block;
-  border: 3px solid var(--surface);
-  box-shadow: 0 0 0 1px var(--border);
-}
-  .profile-card-name {
-    font-family: 'Fraunces', serif;
-    font-size: 1.3rem; font-weight: 500; color: var(--ink); margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-  .profile-card-role {
-    font-size: 0.82rem; color: var(--ink-soft); margin-bottom: 28px;
-  }
-  .profile-stat-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius); overflow: hidden;
-    margin-bottom: 24px;
-  }
-  .profile-stat {
-    padding: 16px 12px; background: var(--surface);
-    text-align: center;
-  }
-  .profile-stat-num {
-    font-family: 'Fraunces', serif;
-    font-size: 1.8rem; font-weight: 500; color: var(--primary); line-height: 1;
-  }
-  .profile-stat-label {
-    font-size: 0.66rem; color: var(--ink-mute); text-transform: uppercase;
-    letter-spacing: 0.1em; margin-top: 4px; font-weight: 600;
-  }
-  .profile-social { display: flex; flex-direction: column; gap: 8px; }
-  .social-link {
-    display: flex; align-items: center; gap: 12px;
-    padding: 11px 14px; border: 1px solid var(--border);
-    border-radius: var(--radius-sm); text-decoration: none; color: var(--ink-soft);
-    font-size: 0.8rem; font-weight: 500;
-    background: var(--bg-soft);
-    transition: all 0.18s;
-  }
-  .social-link:hover { border-color: var(--accent); color: var(--ink); background: var(--surface); }
-  .social-icon {
-    width: 18px; height: 18px; flex-shrink: 0;
-    color: var(--accent);
-  }
+    .nav-brand .mark {
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--surface);
+    }
 
-  /* ─── SECTIONS ─────────────────────────────────── */
-  section { padding: 100px 0; position: relative; }
-  .sec-alt { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+    }
 
-  .section-header { margin-bottom: 56px; max-width: 720px; }
-  .section-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent); font-weight: 600; margin-bottom: 16px;
-  }
-  .section-tag::before {
-    content: ''; display: block; width: 28px; height: 1.5px; background: var(--accent);
-  }
-  .section-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2rem, 3.6vw, 2.9rem);
-    font-weight: 400; color: var(--ink); line-height: 1.15;
-    letter-spacing: -0.02em;
-  }
-  .section-title em { font-style: italic; color: var(--accent); font-weight: 500; }
+    .nav-links a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+    }
 
-  /* ─── INTERESTS ─────────────────────────────── */
-  .interests-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .interest-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 30px 26px;
-    transition: all 0.25s;
-  }
-  .interest-item:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--accent-soft);
-  }
-  .interest-num {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.74rem; font-weight: 500; color: var(--accent);
-    padding: 4px 10px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    margin-bottom: 18px;
-    background: var(--bg-soft);
-  }
-  .interest-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.2rem; font-weight: 500; color: var(--ink); margin-bottom: 10px; line-height: 1.3;
-    letter-spacing: -0.01em;
-  }
-  .interest-desc { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.7; }
+    .nav-links a:hover {
+      color: var(--primary);
+      background: var(--surface-2);
+    }
 
-  /* ─── PUBLICATIONS ─────────────────────────────── */
-  .pub-list { display: flex; flex-direction: column; gap: 14px; }
-  .pub-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 26px 30px;
-    display: grid; grid-template-columns: 84px 1fr auto;
-    gap: 24px; align-items: start;
-    transition: all 0.22s;
-  }
-  .pub-item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--accent-soft);
-  }
-  .pub-year {
-    font-family: 'Fraunces', serif;
-    font-size: 1.45rem; font-weight: 500; color: var(--primary);
-    padding: 4px 0; text-align: center;
-    border-right: 1px solid var(--border);
-    padding-right: 16px;
-  }
-  .pub-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.15rem; font-weight: 500; color: var(--ink);
-    margin-bottom: 8px; line-height: 1.4; letter-spacing: -0.005em;
-  }
-  .pub-authors { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 6px; }
-  .pub-authors strong { color: var(--accent); font-weight: 600; }
-  .pub-journal {
-    font-size: 0.85rem; color: var(--ink-soft);
-    font-family: 'Fraunces', serif; font-style: italic;
-  }
-  .pub-tags { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
-  .pub-tag {
-    font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 3px 10px; border-radius: 999px;
-    font-weight: 600;
-    border: 1px solid;
-  }
-  .tag-sci { background: rgba(30,58,95,0.06); color: var(--primary); border-color: rgba(30,58,95,0.2); }
-  .tag-scopus { background: rgba(140,106,58,0.07); color: var(--accent); border-color: rgba(140,106,58,0.25); }
-  .tag-first { background: rgba(90,123,111,0.08); color: var(--sage); border-color: rgba(90,123,111,0.25); }
+    /* ─── HERO ─────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 0 90px;
+      position: relative;
+    }
 
-  .pub-doi {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 7px 14px; background: var(--bg-soft); color: var(--primary);
-    border: 1px solid var(--border); border-radius: var(--radius-sm);
-    font-size: 0.74rem; font-weight: 600; text-decoration: none;
-    white-space: nowrap;
-    transition: all 0.18s;
-  }
-  .pub-doi:hover { background: var(--primary); color: var(--bg-soft); border-color: var(--primary); }
+    /* subtle background ornament */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(140, 106, 58, 0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
 
-  /* ─── EDUCATION TIMELINE ─────────────────────────────── */
-  .edu-timeline { position: relative; padding-left: 36px; }
-  .edu-timeline::before {
-    content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px;
-    width: 2px; background: var(--border);
-  }
-  .edu-item {
-    position: relative; margin-bottom: 28px;
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 22px 28px;
-    transition: all 0.22s;
-  }
-  .edu-item:hover { border-color: var(--accent-soft); box-shadow: var(--shadow-sm); }
-  .edu-item::before {
-    content: ''; position: absolute; left: -38px; top: 26px;
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--surface); border: 2px solid var(--accent);
-    box-shadow: 0 0 0 3px var(--bg);
-  }
-  .edu-year {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.74rem; color: var(--accent); font-weight: 500;
-    margin-bottom: 6px; letter-spacing: 0.04em;
-  }
-  .edu-degree {
-    font-family: 'Fraunces', serif;
-    font-size: 1.3rem; font-weight: 500; color: var(--ink); margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-  .edu-inst { font-size: 0.92rem; color: var(--primary); margin-bottom: 4px; font-weight: 500; }
-  .edu-detail { font-size: 0.85rem; color: var(--ink-soft); }
-  .edu-detail em { color: var(--ink-soft); font-style: italic; }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 10%;
+      left: -100px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30, 58, 95, 0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
 
-  /* ─── EXPERIENCE ─────────────────────────────── */
-  .exp-grid { display: flex; flex-direction: column; gap: 14px; }
-  .exp-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 26px 30px;
-    display: grid; grid-template-columns: 200px 1fr;
-    gap: 28px;
-    transition: all 0.22s;
-  }
-  .exp-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--accent-soft); }
-  .exp-period {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem; color: var(--ink-soft); line-height: 1.6;
-    font-weight: 500;
-  }
-  .exp-period .current {
-    display: inline-block; margin-top: 8px; padding: 3px 10px;
-    background: rgba(90,123,111,0.1); color: var(--sage);
-    border: 1px solid rgba(90,123,111,0.25); border-radius: 999px;
-    font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
-    font-weight: 600;
-  }
-  .exp-period .current::before {
-    content: '●'; margin-right: 4px; color: var(--sage);
-    animation: blink 2s ease-in-out infinite;
-  }
-  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-  .exp-role {
-    font-family: 'Fraunces', serif;
-    font-size: 1.25rem; font-weight: 500; color: var(--ink); margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-  .exp-org { font-size: 0.95rem; color: var(--accent); margin-bottom: 6px; font-weight: 600; }
-  .exp-loc { font-size: 0.84rem; color: var(--ink-soft); }
-  .exp-type { font-size: 0.78rem; color: var(--ink-mute); margin-top: 8px; font-style: italic; }
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 48px;
+      position: relative;
+      z-index: 2;
+    }
 
-  /* ─── AWARDS ─────────────────────────────── */
-  .awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .award-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 26px 28px;
-    transition: all 0.22s;
-    display: grid; grid-template-columns: 44px 1fr; gap: 18px; align-items: start;
-  }
-  .award-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--accent-soft); }
-  .award-icon {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: var(--bg-soft); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.15rem;
-    flex-shrink: 0;
-  }
-  .award-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.08rem; font-weight: 500; color: var(--ink); margin-bottom: 6px; line-height: 1.35;
-    letter-spacing: -0.005em;
-  }
-  .award-desc { font-size: 0.84rem; color: var(--ink-soft); line-height: 1.65; }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 80px;
+      align-items: center;
+    }
 
-  /* ─── CONFERENCES ─────────────────────────────── */
-  .conf-list { display: flex; flex-direction: column; gap: 10px; }
-  .conf-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 26px;
-    display: grid; grid-template-columns: 70px 1fr;
-    gap: 20px; align-items: start;
-    transition: all 0.22s;
-  }
-  .conf-item:hover { border-color: var(--accent-soft); }
-  .conf-year-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem; font-weight: 600; color: var(--primary);
-    padding: 5px 0; text-align: center;
-    border: 1px solid var(--border); border-radius: var(--radius-sm);
-    background: var(--bg-soft);
-  }
-  .conf-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1rem; font-weight: 500; color: var(--ink);
-    margin-bottom: 4px; line-height: 1.4;
-  }
-  .conf-venue { font-size: 0.82rem; color: var(--ink-soft); }
-  .conf-type {
-    display: inline-block; margin-top: 8px; padding: 2px 10px;
-    font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
-    border-radius: 999px; font-weight: 600;
-    border: 1px solid;
-  }
-  .conf-intl { background: rgba(30,58,95,0.06); color: var(--primary); border-color: rgba(30,58,95,0.2); }
-  .conf-workshop { background: rgba(140,106,58,0.07); color: var(--accent); border-color: rgba(140,106,58,0.25); }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
 
-  .sub-section-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.6rem; font-weight: 400; color: var(--ink);
-    margin-bottom: 24px; margin-top: 70px;
-    letter-spacing: -0.01em;
-  }
-  .sub-section-title em { color: var(--accent); font-style: italic; font-weight: 500; }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1.5px;
+      background: var(--accent);
+    }
 
-  /* ─── CONTACT ─────────────────────────────── */
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
-  }
-  .contact-info {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
-    padding: 38px;
-    box-shadow: var(--shadow-sm);
-    display: flex; flex-direction: column; gap: 22px;
-  }
-  .contact-row { display: flex; gap: 20px; align-items: flex-start; }
-  .contact-label {
-    font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ink-mute); font-weight: 600;
-    width: 78px; padding-top: 4px; flex-shrink: 0;
-  }
-  .contact-val { font-size: 0.92rem; color: var(--ink); flex: 1; }
-  .contact-val a { color: var(--primary); text-decoration: none; font-weight: 500;
-    border-bottom: 1px solid rgba(30,58,95,0.25);
-    transition: all 0.2s; }
-  .contact-val a:hover { color: var(--accent); border-color: var(--accent); }
+    .hero-name {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
 
-  .research-summary {
-    background: var(--primary);
-    color: var(--bg-soft);
-    border-radius: var(--radius-lg);
-    padding: 40px;
-    box-shadow: var(--shadow-md);
-    position: relative;
-    overflow: hidden;
-  }
-  .research-summary::before {
-    content: '\201C';
-    font-family: 'Fraunces', serif;
-    font-size: 8rem; line-height: 1;
-    color: var(--accent-soft); opacity: 0.5;
-    position: absolute; top: 4px; left: 18px;
-  }
-  .research-summary h3 {
-    font-family: 'Fraunces', serif; font-size: 1.35rem; font-weight: 500;
-    margin-bottom: 18px; color: var(--accent-soft); position: relative;
-    letter-spacing: -0.01em;
-  }
-  .research-summary p {
-    font-size: 0.94rem; line-height: 1.85; color: rgba(247,244,237,0.9);
-    position: relative;
-  }
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 500;
+    }
 
-  /* ─── FOOTER ─────────────────────────────── */
-  footer {
-    padding: 36px 48px;
-    border-top: 1px solid var(--border);
-    background: var(--bg-soft);
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;
-    font-size: 0.82rem; color: var(--ink-mute);
-  }
-  .footer-brand {
-    font-family: 'Fraunces', serif;
-    font-size: 1rem; font-weight: 500; color: var(--ink);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .footer-brand .mark {
-    width: 24px; height: 24px; border: 1px solid var(--accent);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 0.65rem; color: var(--accent); font-weight: 600;
-  }
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
 
-  /* ─── ANIMATIONS ─────────────────────────────── */
-  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      max-width: 560px;
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
 
-  /* ─── RESPONSIVE ─────────────────────────────── */
-  @media (max-width: 900px) {
-    nav { padding: 14px 24px; }
-    nav.scrolled { padding: 10px 24px; }
-    .nav-links { display: none; }
-    .container { padding: 0 24px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-    .hero { padding: 110px 0 70px; }
-    .interests-grid { grid-template-columns: 1fr; }
-    .pub-item { grid-template-columns: 1fr; gap: 12px; padding: 22px 24px; }
-    .pub-year { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 8px; text-align: left; }
-    .pub-doi { width: fit-content; }
-    .exp-item { grid-template-columns: 1fr; gap: 14px; padding: 22px 24px; }
-    .awards-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; gap: 24px; }
-    .contact-info, .research-summary { padding: 28px; }
-    .conf-item { grid-template-columns: 70px 1fr; gap: 14px; padding: 16px 20px; }
-    section { padding: 80px 0; }
-    footer { flex-direction: column; text-align: center; padding: 28px 24px; }
-  }
-</style>
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+
+    .badge {
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 999px;
+      color: var(--ink-soft);
+      transition: all 0.2s;
+    }
+
+    .badge:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--bg-soft);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-2);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-outline {
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ─── PROFILE CARD ─────────────────────────────────── */
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 64px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .profile-photo {
+      width: 340px;
+      height: 340px;
+      max-width: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 25%;
+      margin: 8px auto 22px;
+      display: block;
+      border: 3px solid var(--surface);
+      box-shadow: 0 0 0 1px var(--border);
+    }
+
+    .profile-card-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .profile-card-role {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+    }
+
+    .profile-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .profile-stat {
+      padding: 16px 12px;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .profile-stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .profile-stat-label {
+      font-size: 0.66rem;
+      color: var(--ink-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .profile-social {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      color: var(--ink-soft);
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: var(--bg-soft);
+      transition: all 0.18s;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    .social-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    /* ─── SECTIONS ─────────────────────────────────── */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .sec-alt {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+      max-width: 720px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 3.6vw, 2.9rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ─── INTERESTS ─────────────────────────────── */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .interest-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px 26px;
+      transition: all 0.25s;
+    }
+
+    .interest-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-soft);
+    }
+
+    .interest-num {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 500;
+      color: var(--accent);
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 18px;
+      background: var(--bg-soft);
+    }
+
+    .interest-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .interest-desc {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    /* ─── PUBLICATIONS ─────────────────────────────── */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .pub-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 30px;
+      display: grid;
+      grid-template-columns: 84px 1fr auto;
+      gap: 24px;
+      align-items: start;
+      transition: all 0.22s;
+    }
+
+    .pub-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-soft);
+    }
+
+    .pub-year {
+      font-family: 'Fraunces', serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--primary);
+      padding: 4px 0;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      padding-right: 16px;
+    }
+
+    .pub-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.4;
+      letter-spacing: -0.005em;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+    }
+
+    .pub-authors strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .pub-journal {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+    }
+
+    .pub-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pub-tag {
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid;
+    }
+
+    .tag-sci {
+      background: rgba(30, 58, 95, 0.06);
+      color: var(--primary);
+      border-color: rgba(30, 58, 95, 0.2);
+    }
+
+    .tag-scopus {
+      background: rgba(140, 106, 58, 0.07);
+      color: var(--accent);
+      border-color: rgba(140, 106, 58, 0.25);
+    }
+
+    .tag-first {
+      background: rgba(90, 123, 111, 0.08);
+      color: var(--sage);
+      border-color: rgba(90, 123, 111, 0.25);
+    }
+
+    .pub-doi {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: var(--bg-soft);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.18s;
+    }
+
+    .pub-doi:hover {
+      background: var(--primary);
+      color: var(--bg-soft);
+      border-color: var(--primary);
+    }
+
+    /* ─── EDUCATION TIMELINE ─────────────────────────────── */
+    .edu-timeline {
+      position: relative;
+      padding-left: 36px;
+    }
+
+    .edu-timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .edu-item {
+      position: relative;
+      margin-bottom: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 28px;
+      transition: all 0.22s;
+    }
+
+    .edu-item:hover {
+      border-color: var(--accent-soft);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .edu-item::before {
+      content: '';
+      position: absolute;
+      left: -38px;
+      top: 26px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 3px var(--bg);
+    }
+
+    .edu-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .edu-degree {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .edu-inst {
+      font-size: 0.92rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .edu-detail {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    .edu-detail em {
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+
+    /* ─── EXPERIENCE ─────────────────────────────── */
+    .exp-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .exp-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 30px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 28px;
+      transition: all 0.22s;
+    }
+
+    .exp-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-soft);
+    }
+
+    .exp-period {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .exp-period .current {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px;
+      background: rgba(90, 123, 111, 0.1);
+      color: var(--sage);
+      border: 1px solid rgba(90, 123, 111, 0.25);
+      border-radius: 999px;
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .exp-period .current::before {
+      content: '●';
+      margin-right: 4px;
+      color: var(--sage);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    .exp-role {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .exp-org {
+      font-size: 0.95rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .exp-loc {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+    }
+
+    .exp-type {
+      font-size: 0.78rem;
+      color: var(--ink-mute);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* ─── AWARDS ─────────────────────────────── */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .award-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+      transition: all 0.22s;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .award-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-soft);
+    }
+
+    .award-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .award-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.08rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 6px;
+      line-height: 1.35;
+      letter-spacing: -0.005em;
+    }
+
+    .award-desc {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+
+    /* ─── CONFERENCES ─────────────────────────────── */
+    .conf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .conf-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 26px;
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 20px;
+      align-items: start;
+      transition: all 0.22s;
+    }
+
+    .conf-item:hover {
+      border-color: var(--accent-soft);
+    }
+
+    .conf-year-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 5px 0;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-soft);
+    }
+
+    .conf-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .conf-venue {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+
+    .conf-type {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 2px 10px;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid;
+    }
+
+    .conf-intl {
+      background: rgba(30, 58, 95, 0.06);
+      color: var(--primary);
+      border-color: rgba(30, 58, 95, 0.2);
+    }
+
+    .conf-workshop {
+      background: rgba(140, 106, 58, 0.07);
+      color: var(--accent);
+      border-color: rgba(140, 106, 58, 0.25);
+    }
+
+    .sub-section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 24px;
+      margin-top: 70px;
+      letter-spacing: -0.01em;
+    }
+
+    .sub-section-title em {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    /* ─── CONTACT ─────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .contact-info {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 38px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .contact-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 600;
+      width: 78px;
+      padding-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .contact-val {
+      font-size: 0.92rem;
+      color: var(--ink);
+      flex: 1;
+    }
+
+    .contact-val a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(30, 58, 95, 0.25);
+      transition: all 0.2s;
+    }
+
+    .contact-val a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .research-summary {
+      background: var(--primary);
+      color: var(--bg-soft);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research-summary::before {
+      content: '\201C';
+      font-family: 'Fraunces', serif;
+      font-size: 8rem;
+      line-height: 1;
+      color: var(--accent-soft);
+      opacity: 0.5;
+      position: absolute;
+      top: 4px;
+      left: 18px;
+    }
+
+    .research-summary h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 18px;
+      color: var(--accent-soft);
+      position: relative;
+      letter-spacing: -0.01em;
+    }
+
+    .research-summary p {
+      font-size: 0.94rem;
+      line-height: 1.85;
+      color: rgba(247, 244, 237, 0.9);
+      position: relative;
+    }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      padding: 36px 48px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.82rem;
+      color: var(--ink-mute);
+    }
+
+    .footer-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand .mark {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 14px 24px;
+      }
+
+      nav.scrolled {
+        padding: 10px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .container {
+        padding: 0 24px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero {
+        padding: 110px 0 70px;
+      }
+
+      .interests-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pub-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 22px 24px;
+      }
+
+      .pub-year {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-right: 0;
+        padding-bottom: 8px;
+        text-align: left;
+      }
+
+      .pub-doi {
+        width: fit-content;
+      }
+
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 22px 24px;
+      }
+
+      .awards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .contact-info,
+      .research-summary {
+        padding: 28px;
+      }
+
+      .conf-item {
+        grid-template-columns: 70px 1fr;
+        gap: 14px;
+        padding: 16px 20px;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 24px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav id="topnav">
-  <a class="nav-brand" href="#"><span class="mark">HS</span> Dr. Harvindra Singh</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#awards">Awards</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <!-- NAV -->
+  <nav id="topnav">
+    <a class="nav-brand" href="#"><span class="mark">HS</span> Dr. Harvindra Singh</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<section class="hero" id="about">
-  <div class="container">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-eyebrow">Applied Mathematics &middot; Numerical Analysis</div>
-        <h1 class="hero-name">Dr. Harvindra <em>Singh</em></h1>
-        <p class="hero-title">ANRF National Post-Doctoral Fellow &mdash; Indian Institute of Technology Ropar</p>
-        <p class="hero-desc">
-          Applied mathematician specialising in spectral methods and high-order numerical techniques for
-          time-dependent nonlinear partial differential equations. My research develops robust, computationally
-          efficient algorithms&mdash;to
-          tackle smooth and non-smooth solutions of complex equations arising in fluid dynamics and
-          mathematical physics.
-        </p>
-        <div class="hero-badges">
-          <span class="badge">Computational Methods for PDEs</span>
-          <span class="badge">Scientific Computing</span>
-          <span class="badge">Numerical Analysis</span>
-          <span class="badge">Spectral Methods</span>
-        </div>
-        <div class="hero-links">
-          <a href="https://scholar.google.com/citations?user=uSFqUHAAAAAJ&hl=en&authuser=2" target="_blank" rel="noopener" class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5zm0 2l-9-5v6l9 5 9-5v-6l-9 5z"/></svg>
-            Google Scholar
-          </a>
-          <a href="https://orcid.org/0000-0002-3032-4642" target="_blank" rel="noopener" class="btn btn-outline">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.946-.947.946-.525 0-.946-.421-.946-.946 0-.516.421-.947.946-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.713 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
-            ORCID
-          </a>
-          <a href="mailto:singh.harvindrahs@gmail.com" class="btn btn-outline">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Email
-          </a>
-        </div>
-      </div>
-      <div class="profile-card">
-        <img src="photo.jpeg" alt="Dr. Harvindra Singh" class="profile-photo">
-        <div class="profile-card-name">Dr. Harvindra Singh</div>
-        <div class="profile-card-role">ANRF N-PDF Fellow, IIT Ropar</div>
-        <div class="profile-stat-grid">
-          <div class="profile-stat">
-            <div class="profile-stat-num">5</div>
-            <div class="profile-stat-label">Publications</div>
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-eyebrow">Applied Mathematics &middot; Numerical Analysis</div>
+          <h1 class="hero-name">Dr. Harvindra <em>Singh</em></h1>
+          <p class="hero-title">ANRF National Post-Doctoral Fellow &mdash; Indian Institute of Technology Ropar</p>
+          <p class="hero-desc">
+            Applied mathematician specialising in spectral methods and high-order numerical techniques for
+            time-dependent nonlinear partial differential equations. My research develops robust, computationally
+            efficient algorithms&mdash;to
+            tackle smooth and non-smooth solutions of complex equations arising in fluid dynamics and
+            mathematical physics.
+          </p>
+          <div class="hero-badges">
+            <span class="badge">Computational Methods for PDEs</span>
+            <span class="badge">Scientific Computing</span>
+            <span class="badge">Numerical Analysis</span>
+            <span class="badge">Spectral Methods</span>
           </div>
-          <div class="profile-stat">
-            <div class="profile-stat-num">3</div>
-            <div class="profile-stat-label">SCI Journals</div>
-          </div>
-          <div class="profile-stat">
-            <div class="profile-stat-num">5+</div>
-            <div class="profile-stat-label">Conferences</div>
-          </div>
-          <div class="profile-stat">
-            <div class="profile-stat-num">7+</div>
-            <div class="profile-stat-label">Yrs Research</div>
+          <div class="hero-links">
+            <a href="https://scholar.google.com/citations?user=uSFqUHAAAAAJ&hl=en&authuser=2" target="_blank"
+              rel="noopener" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 14l9-5-9-5-9 5 9 5zm0 2l-9-5v6l9 5 9-5v-6l-9 5z" />
+              </svg>
+              Google Scholar
+            </a>
+            <a href="https://orcid.org/0000-0002-3032-4642" target="_blank" rel="noopener" class="btn btn-outline">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.946-.947.946-.525 0-.946-.421-.946-.946 0-.516.421-.947.946-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.713 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z" />
+              </svg>
+              ORCID
+            </a>
+            <a href="mailto:singh.harvindrahs@gmail.com" class="btn btn-outline">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              Email
+            </a>
           </div>
         </div>
-        <div class="profile-social">
-          <a href="https://scholar.google.com/citations?user=uSFqUHAAAAAJ&hl=en&authuser=2" target="_blank" rel="noopener" class="social-link">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5zm0 2l-9-5v6l9 5 9-5v-6l-9 5z"/></svg>
-            Google Scholar
-          </a>
-          <a href="https://orcid.org/0000-0002-3032-4642" target="_blank" rel="noopener" class="social-link">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.946-.947.946-.525 0-.946-.421-.946-.946 0-.516.421-.947.946-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.713 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
-            ORCID 0000-0002-3032-4642
-          </a>
-          <a href="mailto:singh.harvindrahs@gmail.com" class="social-link">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            singh.harvindrahs@gmail.com
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RESEARCH INTERESTS -->
-<section class="sec-alt" id="research">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-tag">Research Focus</div>
-      <h2 class="section-title">Areas of <em>Expertise</em></h2>
-    </div>
-    <div class="interests-grid fade-up">
-      <div class="interest-item">
-        <div class="interest-num">01</div>
-        <div class="interest-title">Spectral &amp; Pseudospectral Methods</div>
-        <div class="interest-desc">Development of Legendre and Chebyshev pseudospectral discretization schemes for high-accuracy approximation of time-dependent PDEs.</div>
-      </div>
-      <div class="interest-item">
-        <div class="interest-num">02</div>
-        <div class="interest-title">Nonlinear Evolution Equations</div>
-        <div class="interest-desc">Numerical analysis of multidimensional Burgers, Burgers&ndash;Fisher, and generalized nonlinear parabolic equations with steep gradients and discontinuities.</div>
-      </div>
-      <div class="interest-item">
-        <div class="interest-num">03</div>
-        <div class="interest-title">Fractional Differential Equations</div>
-        <div class="interest-desc">Spectral approximations for fractional PDEs including fractional cable and fractional Burgers equations based on the Caputo fractional derivative.</div>
-      </div>
-      <div class="interest-item">
-        <div class="interest-num">04</div>
-        <div class="interest-title">Filter-Enhanced Collocation</div>
-        <div class="interest-desc">Design of fast algorithms with spectral filtering for polynomial collocation methods addressing non-smooth solutions with discontinuous behavior.</div>
-      </div>
-      <div class="interest-item">
-        <div class="interest-num">05</div>
-        <div class="interest-title">Computational Fluid Dynamics</div>
-        <div class="interest-desc">Application of high-order numerical schemes to quasi-linear fluid dynamics problems, including robust solvers for convection-dominated flows.</div>
-      </div>
-      <div class="interest-item">
-        <div class="interest-num">06</div>
-        <div class="interest-title">Mathematical Modelling</div>
-        <div class="interest-desc">Oscillation dynamics in ecological metapopulation models, including Allee effect studies and bifurcation analysis in coupled nonlinear systems.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-tag">Research Output</div>
-      <h2 class="section-title">Journal <em>Publications</em></h2>
-    </div>
-    <div class="pub-list fade-up">
-
-      <div class="pub-item">
-        <div class="pub-year">2026</div>
-        <div>
-          <div class="pub-title">An efficient high-order solver for multidimensional nonlinear time-evolution (Burgers) equation based on Legendre pseudospectral method</div>
-          <div class="pub-authors"><strong>Harvindra Singh</strong> &amp; Lokendra Balyan</div>
-          <div class="pub-journal">Computational and Applied Mathematics &middot; Vol. 45, Article 338, April 2026</div>
-          <div class="pub-tags">
-            <span class="pub-tag tag-sci">SCI</span>
-            <span class="pub-tag tag-first">First Author</span>
+        <div class="profile-card">
+          <img src="photo.jpeg" alt="Dr. Harvindra Singh" class="profile-photo">
+          <div class="profile-card-name">Dr. Harvindra Singh</div>
+          <div class="profile-card-role">ANRF N-PDF Fellow, IIT Ropar</div>
+          <div class="profile-stat-grid">
+            <div class="profile-stat">
+              <div class="profile-stat-num">5</div>
+              <div class="profile-stat-label">Publications</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num">3</div>
+              <div class="profile-stat-label">SCI Journals</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num">5+</div>
+              <div class="profile-stat-label">Conferences</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num">7+</div>
+              <div class="profile-stat-label">Yrs Research</div>
+            </div>
           </div>
-        </div>
-        <a href="https://doi.org/10.1007/s40314-026-03746-w" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-year">2025</div>
-        <div>
-          <div class="pub-title">Optimized Computational Solver for the Quasi-Linear Burgers Equation Using Legendre Pseudospectral Technique</div>
-          <div class="pub-authors"><strong>Harvindra Singh</strong> &amp; Lokendra Balyan</div>
-          <div class="pub-journal">International Journal of Applied and Computational Mathematics &middot; Vol. 11, Article 108, May 2025</div>
-          <div class="pub-tags">
-            <span class="pub-tag tag-scopus">Scopus</span>
-            <span class="pub-tag tag-first">First Author</span>
-          </div>
-        </div>
-        <a href="https://doi.org/10.1007/s40819-025-01912-y" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-year">2024</div>
-        <div>
-          <div class="pub-title">A numerically robust and stable time&ndash;space pseudospectral approach for multidimensional generalized Burgers&ndash;Fisher equation</div>
-          <div class="pub-authors"><strong>Harvindra Singh</strong>, L.K. Balyan, A.K. Mittal, P. Saini</div>
-          <div class="pub-journal">Mathematics and Computers in Simulation &middot; Vol. 225, pp. 177&ndash;194, May 2024</div>
-          <div class="pub-tags">
-            <span class="pub-tag tag-sci">SCI</span>
-            <span class="pub-tag tag-first">First Author</span>
-          </div>
-        </div>
-        <a href="https://doi.org/10.1016/j.matcom.2024.05.005" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-year">2024</div>
-        <div>
-          <div class="pub-title">Pseudospectral analysis for multidimensional fractional Burgers equation based on Caputo fractional derivative</div>
-          <div class="pub-authors"><strong>Harvindra Singh</strong>, A.K. Mittal &amp; L.K. Balyan</div>
-          <div class="pub-journal">Arabian Journal of Mathematics &middot; Vol. 13, pp. 409&ndash;424, July 2024</div>
-          <div class="pub-tags">
-            <span class="pub-tag tag-scopus">Scopus</span>
-            <span class="pub-tag tag-first">First Author</span>
-          </div>
-        </div>
-        <a href="https://doi.org/10.1007/s40065-024-00465-0" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-year">2022</div>
-        <div>
-          <div class="pub-title">Pseudospectral analysis and approximation of two-dimensional fractional cable equation</div>
-          <div class="pub-authors">Avinash Mittal, Lokendra K. Balyan, Manoj K. Panda, Parnika Shrivastava, <strong>Harvindra Singh</strong></div>
-          <div class="pub-journal">Mathematical Methods in the Applied Sciences &middot; Vol. 45, No. 14, pp. 8613&ndash;8630, Sep 2022</div>
-          <div class="pub-tags">
-            <span class="pub-tag tag-sci">SCI</span>
-          </div>
-        </div>
-        <a href="https://doi.org/10.1002/mma.7362" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
-      </div>
-    </div>
-
-    <h3 class="sub-section-title">Conference Papers &amp; <em>Workshops</em></h3>
-    <div class="conf-list fade-up">
-      <div class="conf-item">
-        <div class="conf-year-badge">2024</div>
-        <div>
-          <div class="conf-title">An Efficient Pseudospectral Approximation of Non-Linear Time-Evolution Equations</div>
-          <div class="conf-venue">CTAC 2024 &mdash; Monash University, Australia, Nov 19&ndash;22, 2024</div>
-          <span class="conf-type conf-intl">International</span>
-        </div>
-      </div>
-      <div class="conf-item">
-        <div class="conf-year-badge">2024</div>
-        <div>
-          <div class="conf-title">Improved Pseudospectral Approximation for Nonlinear Parabolic Equation</div>
-          <div class="conf-venue">ICNACT 2024 &mdash; VIT Bhopal in collaboration with UTM Mexico, Aug 8&ndash;10, 2024 &middot; Published in De Gruyter, 2025</div>
-          <span class="conf-type conf-intl">International</span>
-        </div>
-      </div>
-      <div class="conf-item">
-        <div class="conf-year-badge">2023</div>
-        <div>
-          <div class="conf-title">An Improved Chebyshev Collocation Approximation of the Burgers-Fisher Equation</div>
-          <div class="conf-venue">ICAMM 2023 &mdash; IIT Indore, Oct 18&ndash;20, 2023 &middot; Springer, Vol. 517, pp. 443&ndash;446</div>
-          <span class="conf-type conf-intl">International</span>
-        </div>
-      </div>
-      <div class="conf-item">
-        <div class="conf-year-badge">2023</div>
-        <div>
-          <div class="conf-title">Workshop on Finite Volume and Spectral Methods for Hyperbolic Problems</div>
-          <div class="conf-venue">Centre for Applicable Mathematics, TIFR Bangalore, Dec 4&ndash;15, 2023</div>
-          <span class="conf-type conf-workshop">Workshop</span>
-        </div>
-      </div>
-      <div class="conf-item">
-        <div class="conf-year-badge">2022</div>
-        <div>
-          <div class="conf-title">Spectral Approximation For Elliptic Eigenvalue Problem On Non-Smooth Domain</div>
-          <div class="conf-venue">ICNAA 2022 &mdash; Assam Don Bosco University / UTM Mexico / RJ College Mumbai, Nov 22&ndash;23, 2022</div>
-          <span class="conf-type conf-intl">International</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section class="sec-alt" id="education">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-tag">Academic Background</div>
-      <h2 class="section-title">Education <em>Journey</em></h2>
-    </div>
-    <div class="edu-timeline fade-up">
-      <div class="edu-item">
-        <div class="edu-year">2019 &mdash; 2025</div>
-        <div class="edu-degree">Ph.D. in Applied Mathematics</div>
-        <div class="edu-inst">PDPM IIITDM Jabalpur, Madhya Pradesh, India</div>
-        <div class="edu-detail">Thesis: <em>Robust high-order numerical techniques for solving time-dependent non-linear smooth and non-smooth PDEs using spectral methods</em></div>
-        <div class="edu-detail" style="margin-top:6px;">Supervisor: Dr. Lokendra K. Balyan &middot; Degree Awarded: April 22, 2025</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-year">2015 &mdash; 2017</div>
-        <div class="edu-degree">M.Sc. in Mathematics</div>
-        <div class="edu-inst">Indian Institute of Technology Ropar, Punjab, India</div>
-        <div class="edu-detail">First Division</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-year">2011 &mdash; 2014</div>
-        <div class="edu-degree">B.Sc. in Mathematics, Physics &amp; Chemistry</div>
-        <div class="edu-inst">KLDAV PG College Roorkee, HNB Garhwal University, Uttarakhand</div>
-        <div class="edu-detail"> First Division</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-year">2011</div>
-        <div class="edu-degree">Intermediate (Class XII)</div>
-        <div class="edu-inst">NIC Dhanauri, Uttarakhand</div>
-        <div class="edu-detail">First Division</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-tag">Professional History</div>
-      <h2 class="section-title">Teaching &amp; <em>Research Experience</em></h2>
-    </div>
-    <div class="exp-grid fade-up">
-      <div class="exp-item">
-        <div class="exp-period">
-          2025 &mdash; Present<br>
-          <span class="current">Current</span>
-        </div>
-        <div>
-          <div class="exp-role">ANRF National Post-Doctoral Fellow</div>
-          <div class="exp-org">Indian Institute of Technology Ropar</div>
-          <div class="exp-loc">Rupnagar, Punjab &mdash; 140001, India</div>
-          <div class="exp-type">Autonomous Institute of National Importance &middot; Awarded by ANRF for 2 years</div>
-        </div>
-      </div>
-      <div class="exp-item">
-        <div class="exp-period">Oct 2024 &mdash; 2025</div>
-        <div>
-          <div class="exp-role">Assistant Professor, Mathematics</div>
-          <div class="exp-org">Dev Bhoomi Uttarakhand University</div>
-          <div class="exp-loc">Chakrata Road, Dehradun &mdash; 248007, Uttarakhand</div>
-          <div class="exp-type">School of Allied Sciences &middot; Private, UGC-recognized University</div>
-        </div>
-      </div>
-      <div class="exp-item">
-        <div class="exp-period">Jul 2018 &mdash; Aug 2019</div>
-        <div>
-          <div class="exp-role">Assistant Professor, Mathematics</div>
-          <div class="exp-org">Chandigarh University</div>
-          <div class="exp-loc">NH-95, Gharuan, Mohali, Punjab &mdash; 140413</div>
-          <div class="exp-type">Private, UGC-recognized University</div>
-        </div>
-      </div>
-      <div class="exp-item">
-        <div class="exp-period">2019 &mdash; 2025</div>
-        <div>
-          <div class="exp-role">Teaching Assistant (Ph.D.)</div>
-          <div class="exp-org">PDPM IIITDM Jabalpur</div>
-          <div class="exp-loc">Jabalpur &mdash; 482005, Madhya Pradesh</div>
-          <div class="exp-type">Courses: Calculus &middot; ODEs &amp; PDEs &middot; Linear Algebra &amp; Probability &middot; Numerical Methods</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AWARDS -->
-<section class="sec-alt" id="awards">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-tag">Recognition</div>
-      <h2 class="section-title">Awards &amp; <em>Fellowships</em></h2>
-    </div>
-    <div class="awards-grid fade-up">
-      <div class="award-item">
-        <div class="award-icon">🏆</div>
-        <div>
-          <div class="award-title">ANRF National Post-Doctoral Fellowship (N-PDF)</div>
-          <div class="award-desc">Awarded by the Anusandhan National Research Foundation (ANRF) for a 2-year post-doctoral fellowship at IIT Ropar &mdash; a highly competitive national fellowship for research excellence.</div>
-        </div>
-      </div>
-      <div class="award-item">
-        <div class="award-icon">🥇</div>
-        <div>
-          <div class="award-title">Young Scientist Award &mdash; Mathematical Sciences</div>
-          <div class="award-desc">Conferred at the 37th M.P. Young Scientist Congress hosted by Mahatma Gandhi Chitrakoot Gramodaya Vishwavidyalaya, Chitrakoot. Includes a cash prize of ₹25,000.</div>
-        </div>
-      </div>
-      <div class="award-item">
-        <div class="award-icon">🎓</div>
-        <div>
-          <div class="award-title">INSPIRE Scholarship &mdash; DST, Government of India</div>
-          <div class="award-desc">Awarded during B.Sc. (2011&ndash;2014) and M.Sc. (2015&ndash;2017). Granted to students in the top 1% of Class XII board results, by the Department of Science and Technology.</div>
-        </div>
-      </div>
-      <div class="award-item">
-        <div class="award-icon">🔬</div>
-        <div>
-          <div class="award-title">INSPIRE Fellowship &mdash; DST</div>
-          <div class="award-desc">Provisional offer under INSPIRE Fellowship [DST/INSPIRE/03/2017/001914] to pursue research in basic and applied sciences.</div>
-        </div>
-      </div>
-      <div class="award-item">
-        <div class="award-icon">📝</div>
-        <div>
-          <div class="award-title">GATE 2018 &amp; 2019 &mdash; Qualified</div>
-          <div class="award-desc">Qualified Graduate Aptitude Test in Engineering (Mathematics), organized by IITs and IISc on behalf of NCB-GATE, MHRD.</div>
-        </div>
-      </div>
-      <div class="award-item">
-        <div class="award-icon">🧪</div>
-        <div>
-          <div class="award-title">CSIR-UGC NET 2020 &amp; 2021 &mdash; Qualified</div>
-          <div class="award-desc">Qualified the Joint CSIR-UGC National Eligibility Test in Mathematical Sciences conducted by the Council of Scientific &amp; Industrial Research.</div>
-        </div>
-      </div>
-      <div class="award-item">
-        <div class="award-icon">📐</div>
-        <div>
-          <div class="award-title">JAM 2015 &mdash; Qualified</div>
-          <div class="award-desc">Qualified the Joint Admission Test for M.Sc. (Mathematics), conducted by IIT Guwahati, enabling admission to IIT Ropar for postgraduate studies.</div>
-        </div>
-      </div>
-      <div class="award-item">
-        <div class="award-icon">🏏</div>
-        <div>
-          <div class="award-title">FIT India Cricket Tournament 2022 &mdash; Century</div>
-          <div class="award-desc">Scored a century in the FIT India Cricket Tournament 2022 &mdash; the first ever by a Ph.D. scholar since the tournament's inception at IIITDM Jabalpur.</div>
-        </div>
-      </div>
-       <div class="award-item">
-        <div class="award-icon">📑</div>
-        <div>
-          <div class="award-title">NCC Certificates</div>
-          <div class="award-desc">Earned B and C certificates in graduation </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-tag">Get in Touch</div>
-      <h2 class="section-title">Let's <em>Connect</em></h2>
-    </div>
-    <div class="contact-grid fade-up">
-      <div class="contact-info">
-        <div class="contact-row">
-          <div class="contact-label">Position</div>
-          <div class="contact-val">ANRF N-PDF Fellow, Department of Mathematics<br>Indian Institute of Technology Ropar</div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-label">Address</div>
-          <div class="contact-val">Rupnagar, Punjab &mdash; 140001, India</div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-label">Email</div>
-          <div class="contact-val">
-            <a href="mailto:singh.harvindrahs@gmail.com">singh.harvindrahs@gmail.com</a><br>
-            <a href="mailto:1915605@iiitdmj.ac.in">1915605@iiitdmj.ac.in</a>
-          </div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-label">Mobile</div>
-          <div class="contact-val">+91-9027279494</div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-label">Scholar</div>
-          <div class="contact-val">
-            <a href="https://scholar.google.com/citations?user=uSFqUHAAAAAJ&hl=en&authuser=2" target="_blank" rel="noopener">Google Scholar Profile ↗</a>
-          </div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-label">ORCID</div>
-          <div class="contact-val">
-            <a href="https://orcid.org/0000-0002-3032-4642" target="_blank" rel="noopener">0000-0002-3032-4642</a>
+          <div class="profile-social">
+            <a href="https://scholar.google.com/citations?user=uSFqUHAAAAAJ&hl=en&authuser=2" target="_blank"
+              rel="noopener" class="social-link">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 14l9-5-9-5-9 5 9 5zm0 2l-9-5v6l9 5 9-5v-6l-9 5z" />
+              </svg>
+              Google Scholar
+            </a>
+            <a href="https://orcid.org/0000-0002-3032-4642" target="_blank" rel="noopener" class="social-link">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.946-.947.946-.525 0-.946-.421-.946-.946 0-.516.421-.947.946-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.713 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z" />
+              </svg>
+              ORCID 0000-0002-3032-4642
+            </a>
+            <a href="mailto:singh.harvindrahs@gmail.com" class="social-link">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              singh.harvindrahs@gmail.com
+            </a>
           </div>
         </div>
       </div>
-      <div class="research-summary">
-        <h3>Open to Collaboration</h3>
-        <p>
-          My research lies at the intersection of numerical analysis, spectral methods, and the theory of partial differential equations. I focus on developing computationally efficient, high-order algorithms for nonlinear and fractional PDEs &mdash; particularly problems in fluid dynamics and mathematical physics.
-        </p>
-        <p style="margin-top:14px;">I welcome research collaborations, visiting positions, and discussions on spectral methods for challenging PDE problems.</p>
+    </div>
+  </section>
+
+  <!-- RESEARCH INTERESTS -->
+  <section class="sec-alt" id="research">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag">Research Focus</div>
+        <h2 class="section-title">Areas of <em>Expertise</em></h2>
+      </div>
+      <div class="interests-grid fade-up">
+        <div class="interest-item">
+          <div class="interest-num">01</div>
+          <div class="interest-title">Spectral &amp; Pseudospectral Methods</div>
+          <div class="interest-desc">Development of Legendre and Chebyshev pseudospectral discretization schemes for
+            high-accuracy approximation of time-dependent PDEs.</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-num">02</div>
+          <div class="interest-title">Nonlinear Evolution Equations</div>
+          <div class="interest-desc">Numerical analysis of multidimensional Burgers, Burgers&ndash;Fisher, and
+            generalized nonlinear parabolic equations with steep gradients and discontinuities.</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-num">03</div>
+          <div class="interest-title">Fractional Differential Equations</div>
+          <div class="interest-desc">Spectral approximations for fractional PDEs including fractional cable and
+            fractional Burgers equations based on the Caputo fractional derivative.</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-num">04</div>
+          <div class="interest-title">Filter-Enhanced Collocation</div>
+          <div class="interest-desc">Design of fast algorithms with spectral filtering for polynomial collocation
+            methods addressing non-smooth solutions with discontinuous behavior.</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-num">05</div>
+          <div class="interest-title">Computational Fluid Dynamics</div>
+          <div class="interest-desc">Application of high-order numerical schemes to quasi-linear fluid dynamics
+            problems, including robust solvers for convection-dominated flows.</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-num">06</div>
+          <div class="interest-title">Mathematical Modelling</div>
+          <div class="interest-desc">Oscillation dynamics in ecological metapopulation models, including Allee effect
+            studies and bifurcation analysis in coupled nonlinear systems.</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <span class="footer-brand"><span class="mark">HS</span> Dr. Harvindra Singh</span>
-  <span>Department of Mathematics &middot; IIT Ropar, Punjab, India</span>
-  <span>ORCID: 0000-0002-3032-4642 &middot; © 2026</span>
-</footer>
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag">Research Output</div>
+        <h2 class="section-title">Journal <em>Publications</em></h2>
+      </div>
+      <div class="pub-list fade-up">
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
+        <div class="pub-item">
+          <div class="pub-year">2026</div>
+          <div>
+            <div class="pub-title">An efficient high-order solver for multidimensional nonlinear time-evolution
+              (Burgers) equation based on Legendre pseudospectral method</div>
+            <div class="pub-authors"><strong>Harvindra Singh</strong> &amp; Lokendra Balyan</div>
+            <div class="pub-journal">Computational and Applied Mathematics &middot; Vol. 45, Article 338, April 2026
+            </div>
+            <div class="pub-tags">
+              <span class="pub-tag tag-sci">SCI</span>
+              <span class="pub-tag tag-first">First Author</span>
+            </div>
+          </div>
+          <a href="https://doi.org/10.1007/s40314-026-03746-w" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2025</div>
+          <div>
+            <div class="pub-title">Optimized Computational Solver for the Quasi-Linear Burgers Equation Using Legendre
+              Pseudospectral Technique</div>
+            <div class="pub-authors"><strong>Harvindra Singh</strong> &amp; Lokendra Balyan</div>
+            <div class="pub-journal">International Journal of Applied and Computational Mathematics &middot; Vol. 11,
+              Article 108, May 2025</div>
+            <div class="pub-tags">
+              <span class="pub-tag tag-scopus">Scopus</span>
+              <span class="pub-tag tag-first">First Author</span>
+            </div>
+          </div>
+          <a href="https://doi.org/10.1007/s40819-025-01912-y" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2024</div>
+          <div>
+            <div class="pub-title">A numerically robust and stable time&ndash;space pseudospectral approach for
+              multidimensional generalized Burgers&ndash;Fisher equation</div>
+            <div class="pub-authors"><strong>Harvindra Singh</strong>, L.K. Balyan, A.K. Mittal, P. Saini</div>
+            <div class="pub-journal">Mathematics and Computers in Simulation &middot; Vol. 225, pp. 177&ndash;194, May
+              2024</div>
+            <div class="pub-tags">
+              <span class="pub-tag tag-sci">SCI</span>
+              <span class="pub-tag tag-first">First Author</span>
+            </div>
+          </div>
+          <a href="https://doi.org/10.1016/j.matcom.2024.05.005" target="_blank" rel="noopener" class="pub-doi">DOI
+            ↗</a>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2024</div>
+          <div>
+            <div class="pub-title">Pseudospectral analysis for multidimensional fractional Burgers equation based on
+              Caputo fractional derivative</div>
+            <div class="pub-authors"><strong>Harvindra Singh</strong>, A.K. Mittal &amp; L.K. Balyan</div>
+            <div class="pub-journal">Arabian Journal of Mathematics &middot; Vol. 13, pp. 409&ndash;424, July 2024</div>
+            <div class="pub-tags">
+              <span class="pub-tag tag-scopus">Scopus</span>
+              <span class="pub-tag tag-first">First Author</span>
+            </div>
+          </div>
+          <a href="https://doi.org/10.1007/s40065-024-00465-0" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2022</div>
+          <div>
+            <div class="pub-title">Pseudospectral analysis and approximation of two-dimensional fractional cable
+              equation</div>
+            <div class="pub-authors">Avinash Mittal, Lokendra K. Balyan, Manoj K. Panda, Parnika Shrivastava,
+              <strong>Harvindra Singh</strong>
+            </div>
+            <div class="pub-journal">Mathematical Methods in the Applied Sciences &middot; Vol. 45, No. 14, pp.
+              8613&ndash;8630, Sep 2022</div>
+            <div class="pub-tags">
+              <span class="pub-tag tag-sci">SCI</span>
+            </div>
+          </div>
+          <a href="https://doi.org/10.1002/mma.7362" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
+        </div>
+      </div>
+
+      <h3 class="sub-section-title">Conference Papers &amp; <em>Workshops</em></h3>
+      <div class="conf-list fade-up">
+        <div class="conf-item">
+          <div class="conf-year-badge">2024</div>
+          <div>
+            <div class="conf-title">An Efficient Pseudospectral Approximation of Non-Linear Time-Evolution Equations
+            </div>
+            <div class="conf-venue">CTAC 2024 &mdash; Monash University, Australia, Nov 19&ndash;22, 2024</div>
+            <span class="conf-type conf-intl">International</span>
+          </div>
+        </div>
+        <div class="conf-item">
+          <div class="conf-year-badge">2024</div>
+          <div>
+            <div class="conf-title">Improved Pseudospectral Approximation for Nonlinear Parabolic Equation</div>
+            <div class="conf-venue">ICNACT 2024 &mdash; VIT Bhopal in collaboration with UTM Mexico, Aug 8&ndash;10,
+              2024 &middot; Published in De Gruyter, 2025</div>
+            <span class="conf-type conf-intl">International</span>
+          </div>
+        </div>
+        <div class="conf-item">
+          <div class="conf-year-badge">2023</div>
+          <div>
+            <div class="conf-title">An Improved Chebyshev Collocation Approximation of the Burgers-Fisher Equation</div>
+            <div class="conf-venue">ICAMM 2023 &mdash; IIT Indore, Oct 18&ndash;20, 2023 &middot; Springer, Vol. 517,
+              pp. 443&ndash;446</div>
+            <span class="conf-type conf-intl">International</span>
+          </div>
+        </div>
+        <div class="conf-item">
+          <div class="conf-year-badge">2023</div>
+          <div>
+            <div class="conf-title">Workshop on Finite Volume and Spectral Methods for Hyperbolic Problems</div>
+            <div class="conf-venue">Centre for Applicable Mathematics, TIFR Bangalore, Dec 4&ndash;15, 2023</div>
+            <span class="conf-type conf-workshop">Workshop</span>
+          </div>
+        </div>
+        <div class="conf-item">
+          <div class="conf-year-badge">2022</div>
+          <div>
+            <div class="conf-title">Spectral Approximation For Elliptic Eigenvalue Problem On Non-Smooth Domain</div>
+            <div class="conf-venue">ICNAA 2022 &mdash; Assam Don Bosco University / UTM Mexico / RJ College Mumbai, Nov
+              22&ndash;23, 2022</div>
+            <span class="conf-type conf-intl">International</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="sec-alt" id="education">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag">Academic Background</div>
+        <h2 class="section-title">Education <em>Journey</em></h2>
+      </div>
+      <div class="edu-timeline fade-up">
+        <div class="edu-item">
+          <div class="edu-year">2019 &mdash; 2025</div>
+          <div class="edu-degree">Ph.D. in Applied Mathematics</div>
+          <div class="edu-inst">PDPM IIITDM Jabalpur, Madhya Pradesh, India</div>
+          <div class="edu-detail">Thesis: <em>Robust high-order numerical techniques for solving time-dependent
+              non-linear smooth and non-smooth PDEs using spectral methods</em></div>
+          <div class="edu-detail" style="margin-top:6px;">Supervisor: Dr. Lokendra K. Balyan &middot; Degree Awarded:
+            April 22, 2025</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2015 &mdash; 2017</div>
+          <div class="edu-degree">M.Sc. in Mathematics</div>
+          <div class="edu-inst">Indian Institute of Technology Ropar, Punjab, India</div>
+          <div class="edu-detail">First Division</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2011 &mdash; 2014</div>
+          <div class="edu-degree">B.Sc. in Mathematics, Physics &amp; Chemistry</div>
+          <div class="edu-inst">KLDAV PG College Roorkee, HNB Garhwal University, Uttarakhand</div>
+          <div class="edu-detail"> First Division</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2011</div>
+          <div class="edu-degree">Intermediate (Class XII)</div>
+          <div class="edu-inst">NIC Dhanauri, Uttarakhand</div>
+          <div class="edu-detail">First Division</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag">Professional History</div>
+        <h2 class="section-title">Teaching &amp; <em>Research Experience</em></h2>
+      </div>
+      <div class="exp-grid fade-up">
+        <div class="exp-item">
+          <div class="exp-period">
+            2025 &mdash; Present<br>
+            <span class="current">Current</span>
+          </div>
+          <div>
+            <div class="exp-role">ANRF National Post-Doctoral Fellow</div>
+            <div class="exp-org">Indian Institute of Technology Ropar</div>
+            <div class="exp-loc">Rupnagar, Punjab &mdash; 140001, India</div>
+            <div class="exp-type">Autonomous Institute of National Importance &middot; Awarded by ANRF for 2 years</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-period">Oct 2024 &mdash; 2025</div>
+          <div>
+            <div class="exp-role">Assistant Professor, Mathematics</div>
+            <div class="exp-org">Dev Bhoomi Uttarakhand University</div>
+            <div class="exp-loc">Chakrata Road, Dehradun &mdash; 248007, Uttarakhand</div>
+            <div class="exp-type">School of Allied Sciences &middot; Private, UGC-recognized University</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-period">Jul 2018 &mdash; Aug 2019</div>
+          <div>
+            <div class="exp-role">Assistant Professor, Mathematics</div>
+            <div class="exp-org">Chandigarh University</div>
+            <div class="exp-loc">NH-95, Gharuan, Mohali, Punjab &mdash; 140413</div>
+            <div class="exp-type">Private, UGC-recognized University</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-period">2019 &mdash; 2025</div>
+          <div>
+            <div class="exp-role">Teaching Assistant (Ph.D.)</div>
+            <div class="exp-org">PDPM IIITDM Jabalpur</div>
+            <div class="exp-loc">Jabalpur &mdash; 482005, Madhya Pradesh</div>
+            <div class="exp-type">Courses: Calculus &middot; ODEs &amp; PDEs &middot; Linear Algebra &amp; Probability
+              &middot; Numerical Methods</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="sec-alt" id="awards">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag">Recognition</div>
+        <h2 class="section-title">Awards &amp; <em>Fellowships</em></h2>
+      </div>
+      <div class="awards-grid fade-up">
+        <div class="award-item">
+          <div class="award-icon">🏆</div>
+          <div>
+            <div class="award-title">ANRF National Post-Doctoral Fellowship (N-PDF)</div>
+            <div class="award-desc">Awarded by the Anusandhan National Research Foundation (ANRF) for a 2-year
+              post-doctoral fellowship at IIT Ropar &mdash; a highly competitive national fellowship for research
+              excellence.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🥇</div>
+          <div>
+            <div class="award-title">Young Scientist Award &mdash; Mathematical Sciences</div>
+            <div class="award-desc">Conferred at the 37th M.P. Young Scientist Congress hosted by Mahatma Gandhi
+              Chitrakoot Gramodaya Vishwavidyalaya, Chitrakoot. Includes a cash prize of ₹25,000.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🎓</div>
+          <div>
+            <div class="award-title">INSPIRE Scholarship &mdash; DST, Government of India</div>
+            <div class="award-desc">Awarded during B.Sc. (2011&ndash;2014) and M.Sc. (2015&ndash;2017). Granted to
+              students in the top 1% of Class XII board results, by the Department of Science and Technology.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🔬</div>
+          <div>
+            <div class="award-title">INSPIRE Fellowship &mdash; DST</div>
+            <div class="award-desc">Provisional offer under INSPIRE Fellowship [DST/INSPIRE/03/2017/001914] to pursue
+              research in basic and applied sciences.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">📝</div>
+          <div>
+            <div class="award-title">GATE 2018 &amp; 2019 &mdash; Qualified</div>
+            <div class="award-desc">Qualified Graduate Aptitude Test in Engineering (Mathematics), organized by IITs and
+              IISc on behalf of NCB-GATE, MHRD.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🧪</div>
+          <div>
+            <div class="award-title">CSIR-UGC NET 2020 &amp; 2021 &mdash; Qualified</div>
+            <div class="award-desc">Qualified the Joint CSIR-UGC National Eligibility Test in Mathematical Sciences
+              conducted by the Council of Scientific &amp; Industrial Research.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">📐</div>
+          <div>
+            <div class="award-title">JAM 2015 &mdash; Qualified</div>
+            <div class="award-desc">Qualified the Joint Admission Test for M.Sc. (Mathematics), conducted by IIT
+              Guwahati, enabling admission to IIT Ropar for postgraduate studies.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🏏</div>
+          <div>
+            <div class="award-title">FIT India Cricket Tournament 2022 &mdash; Century</div>
+            <div class="award-desc">Scored a century in the FIT India Cricket Tournament 2022 &mdash; the first ever by
+              a Ph.D. scholar since the tournament's inception at IIITDM Jabalpur.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">📑</div>
+          <div>
+            <div class="award-title">NCC Certificates</div>
+            <div class="award-desc">Earned B and C certificates in graduation </div>
+            <div>
+              <div class="award-title">NCC Certificates</div>
+              <div class="award-desc">Earned B and C certificates in graduation </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Extra Curricular Activities -->
+      <section id="extracurricular" class="section">
+        <div class="container">
+          <h2>Extracurricular Activities</h2>
+
+          <div class="activity-card">
+            <h3>Music & Cultural Activities</h3>
+            <ul>
+              <li>
+                Won <strong>First Prize</strong> in the
+                <em>Patriotism Singing Competition</em> during M.Sc. at
+                IIT Ropar (2016).
+              </li>
+
+              <li>
+                Secured <strong>Second Prize</strong> in the cultural festival
+                <em>TARANG 2021</em> at IIITDM Jabalpur for a singing band performance.
+              </li>
+
+              <li>
+                Participated in the <em>Solo Singing Competition</em> during
+                the IIT inter-college fest <em>Zeitgeist</em> at IIT Ropar (2017).
+              </li>
+            </ul>
+          </div>
+
+          <div class="activity-card">
+            <h3>Writing & Literary Activities</h3>
+            <ul>
+              <li>
+                Won a prize in an essay writing competition on the topic
+                <em>“Contributions of Indians towards Freedom Struggle”</em>
+                during Ph.D. studies (2021).
+              </li>
+            </ul>
+          </div>
+
+          <div class="activity-card">
+            <h3>Sports Activities</h3>
+            <ul>
+              <li>
+                Active member of M.Sc. and Ph.D. cricket teams.
+              </li>
+
+              <li>
+                Scored a century in the
+                <em>FIT India Cricket Tournament 2022</em> — the first by a
+                Ph.D. scholar since the tournament’s inception.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag">Get in Touch</div>
+        <h2 class="section-title">Let's <em>Connect</em></h2>
+      </div>
+      <div class="contact-grid fade-up">
+        <div class="contact-info">
+          <div class="contact-row">
+            <div class="contact-label">Position</div>
+            <div class="contact-val">ANRF N-PDF Fellow, Department of Mathematics<br>Indian Institute of Technology
+              Ropar</div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-label">Address</div>
+            <div class="contact-val">Rupnagar, Punjab &mdash; 140001, India</div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-label">Email</div>
+            <div class="contact-val">
+              <a href="mailto:singh.harvindrahs@gmail.com">singh.harvindrahs@gmail.com</a><br>
+              <a href="mailto:1915605@iiitdmj.ac.in">1915605@iiitdmj.ac.in</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-label">Mobile</div>
+            <div class="contact-val">+91-9027279494</div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-label">Scholar</div>
+            <div class="contact-val">
+              <a href="https://scholar.google.com/citations?user=uSFqUHAAAAAJ&hl=en&authuser=2" target="_blank"
+                rel="noopener">Google Scholar Profile ↗</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-label">ORCID</div>
+            <div class="contact-val">
+              <a href="https://orcid.org/0000-0002-3032-4642" target="_blank" rel="noopener">0000-0002-3032-4642</a>
+            </div>
+          </div>
+        </div>
+        <div class="research-summary">
+          <h3>Open to Collaboration</h3>
+          <p>
+            My research lies at the intersection of numerical analysis, spectral methods, and the theory of partial
+            differential equations. I focus on developing computationally efficient, high-order algorithms for nonlinear
+            and fractional PDEs &mdash; particularly problems in fluid dynamics and mathematical physics.
+          </p>
+          <p style="margin-top:14px;">I welcome research collaborations, visiting positions, and discussions on spectral
+            methods for challenging PDE problems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand"><span class="mark">HS</span> Dr. Harvindra Singh</span>
+    <span>Department of Mathematics &middot; IIT Ropar, Punjab, India</span>
+    <span>ORCID: 0000-0002-3032-4642 &middot; © 2026</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    const nav = document.getElementById('topnav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  const nav = document.getElementById('topnav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-</script>
+  </script>
 </body>
+
 </html>
