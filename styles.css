@@ -650,12 +650,14 @@ em, i { font-style: italic; }
   a { color: #000; text-decoration: none; }
 }
 
-.edu-inst a {
-  color: inherit;
+/* -------Addded for institutions link -----------*/
+.edu-inst a,
+.edu-inst a:visited {
+  color: inherit !important;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 .edu-inst a:hover {
-  color: var(--accent);
+  color: #a77a3f !important;
+  text-decoration: none;
 }
