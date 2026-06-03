@@ -653,11 +653,10 @@ em, i { font-style: italic; }
 /* -------Addded for institutions link -----------*/
 .edu-inst a,
 .edu-inst a:visited {
-  color: inherit !important;
+  color: var(--primary);
   text-decoration: none;
 }
 
 .edu-inst a:hover {
-  color: #a77a3f !important;
-  text-decoration: none;
+  color: var(--accent);
 }
