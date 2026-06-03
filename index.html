@@ -922,13 +922,15 @@
       border-radius: var(--radius);
       padding: 20px 26px;
       display: grid;
-      grid-template-columns: 70px 1fr;
+      grid-template-columns: 70px 1fr auto;
       gap: 20px;
-      align-items: start;
+      align-items: center;
       transition: all 0.22s;
     }
 
     .conf-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
       border-color: var(--accent-soft);
     }
 
@@ -1211,9 +1213,14 @@
       }
 
       .conf-item {
-        grid-template-columns: 70px 1fr;
-        gap: 14px;
+        grid-template-columns: 1fr;
+        gap: 12px;
         padding: 16px 20px;
+      }
+
+      .conf-year-badge {
+        width: fit-content;
+        padding: 4px 12px;
       }
 
       section {
@@ -1406,7 +1413,7 @@
       <strong>Harvindra Singh</strong> &amp; Lokendra K. Balyan
     </div>
     <div class="pub-journal">
-      International Journal of Computer Mathematics &middot; Taylor &amp; Francis &middot; 2026
+      International Journal of Computer Mathematics &middot; Taylor &amp; Francis &middot; May 2026
     </div>
     <div class="pub-tags">
       <span class="pub-tag tag-sci">SCI</span>
@@ -1422,7 +1429,7 @@
             <div class="pub-title">An efficient high-order solver for multidimensional nonlinear time-evolution
               (Burgers) equation based on Legendre pseudospectral method</div>
             <div class="pub-authors"><strong>Harvindra Singh</strong> &amp; Lokendra Balyan</div>
-            <div class="pub-journal">Computational and Applied Mathematics &middot; Vol. 45, Article 338, April 2026
+            <div class="pub-journal">Computational and Applied Mathematics &middot; Springer Nature &middot; Vol. 45, Article 338, April 2026
             </div>
             <div class="pub-tags">
               <span class="pub-tag tag-sci">SCI</span>
@@ -1438,7 +1445,7 @@
             <div class="pub-title">Optimized Computational Solver for the Quasi-Linear Burgers Equation Using Legendre
               Pseudospectral Technique</div>
             <div class="pub-authors"><strong>Harvindra Singh</strong> &amp; Lokendra Balyan</div>
-            <div class="pub-journal">International Journal of Applied and Computational Mathematics &middot; Vol. 11,
+            <div class="pub-journal">International Journal of Applied and Computational Mathematics &middot; Springer Nature &middot; Vol. 11,
               Article 108, May 2025</div>
             <div class="pub-tags">
               <span class="pub-tag tag-scopus">Scopus</span>
@@ -1454,7 +1461,7 @@
             <div class="pub-title">A numerically robust and stable time&ndash;space pseudospectral approach for
               multidimensional generalized Burgers&ndash;Fisher equation</div>
             <div class="pub-authors"><strong>Harvindra Singh</strong>, L.K. Balyan, A.K. Mittal, P. Saini</div>
-            <div class="pub-journal">Mathematics and Computers in Simulation &middot; Vol. 225, pp. 177&ndash;194, May
+            <div class="pub-journal">Mathematics and Computers in Simulation &middot; Elsevier &middot; Vol. 225, pp. 177&ndash;194, May
               2024</div>
             <div class="pub-tags">
               <span class="pub-tag tag-sci">SCI</span>
@@ -1471,7 +1478,7 @@
             <div class="pub-title">Pseudospectral analysis for multidimensional fractional Burgers equation based on
               Caputo fractional derivative</div>
             <div class="pub-authors"><strong>Harvindra Singh</strong>, A.K. Mittal &amp; L.K. Balyan</div>
-            <div class="pub-journal">Arabian Journal of Mathematics &middot; Vol. 13, pp. 409&ndash;424, July 2024</div>
+            <div class="pub-journal">Arabian Journal of Mathematics &middot; Springer Nature &middot; Vol. 13, pp. 409&ndash;424, July 2024</div>
             <div class="pub-tags">
               <span class="pub-tag tag-scopus">Scopus</span>
               <span class="pub-tag tag-first">First Author</span>
@@ -1488,7 +1495,7 @@
             <div class="pub-authors">Avinash Mittal, Lokendra K. Balyan, Manoj K. Panda, Parnika Shrivastava,
               <strong>Harvindra Singh</strong>
             </div>
-            <div class="pub-journal">Mathematical Methods in the Applied Sciences &middot; Vol. 45, No. 14, pp.
+            <div class="pub-journal">Mathematical Methods in the Applied Sciences &middot; Wiley &middot; Vol. 45, No. 14, pp.
               8613&ndash;8630, Sep 2022</div>
             <div class="pub-tags">
               <span class="pub-tag tag-sci">SCI</span>
@@ -1508,6 +1515,7 @@
             <div class="conf-venue">CTAC 2024 &mdash; Monash University, Australia, Nov 19&ndash;22, 2024</div>
             <span class="conf-type conf-intl">International</span>
           </div>
+          <a href="https://www.monash.edu/science/schools/school-of-mathematics/ctac2024" target="_blank" rel="noopener" class="pub-doi">Link ↗</a>
         </div>
         <div class="conf-item">
           <div class="conf-year-badge">2024</div>
@@ -1517,6 +1525,7 @@
               2024 &middot; Published in De Gruyter, 2025</div>
             <span class="conf-type conf-intl">International</span>
           </div>
+          <a href="https://doi.org/10.1515/9783111724638-007" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
         </div>
         <div class="conf-item">
           <div class="conf-year-badge">2023</div>
@@ -1526,6 +1535,7 @@
               pp. 443&ndash;446</div>
             <span class="conf-type conf-intl">International</span>
           </div>
+          <a href="https://doi.org/10.1007/978-981-95-2314-6_27" target="_blank" rel="noopener" class="pub-doi">DOI ↗</a>
         </div>
         <div class="conf-item">
           <div class="conf-year-badge">2023</div>
@@ -1534,6 +1544,7 @@
             <div class="conf-venue">Centre for Applicable Mathematics, TIFR Bangalore, Dec 4&ndash;15, 2023</div>
             <span class="conf-type conf-workshop">Workshop</span>
           </div>
+          <a href="https://www.atmschools.org/school/2023/NCMW/fvsmhp" target="_blank" rel="noopener" class="pub-doi">Link ↗</a>
         </div>
         <div class="conf-item">
           <div class="conf-year-badge">2022</div>
@@ -1543,6 +1554,7 @@
               22&ndash;23, 2022</div>
             <span class="conf-type conf-intl">International</span>
           </div>
+          <a href="https://conferences.dbuniversity.ac.in/icnaa2022/" target="_blank" rel="noopener" class="pub-doi">Link ↗</a>
         </div>
       </div>
     </div>
