@@ -1001,7 +1001,6 @@
     }
 
     /* ─── GALLERY ─────────────────────────────── */
-<<<<<<< HEAD
    .gallery-masonry {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1020,33 +1019,11 @@
   background: var(--surface-2);
   box-shadow: var(--shadow-sm);
 }
-=======
-    .gallery-masonry {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 10px;
-      gap: 16px;
-    }
-
-    .gallery-item {
-      position: relative;
-      display: block;
-      grid-column: span 1;
-      border-radius: var(--radius);
-      overflow: hidden;
-      cursor: pointer;
-      border: 1px solid var(--border);
-      background: var(--surface-2);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-    }
->>>>>>> e1a75fccf7fcdbcbfc022b0f987d99833100a158
 
     .gallery-item.gallery-wide {
       grid-column: span 2;
     }
 
-<<<<<<< HEAD
  .gallery-item img {
   width: 100%;
   height: 100%;
@@ -1070,47 +1047,6 @@
 .gallery-item:hover .gallery-caption {
   opacity: 1;
 }
-=======
-    .gallery-item:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--accent-soft);
-      z-index: 2;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.45s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.04);
-    }
-
-    .gallery-caption {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 16px 16px 14px;
-      font-family: 'Fraunces', serif;
-      font-size: 0.84rem;
-      font-weight: 500;
-      color: var(--bg-soft);
-      background: linear-gradient(to top, rgba(26, 36, 56, 0.82) 0%, transparent 100%);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.25s, transform 0.25s;
-    }
-
-    .gallery-item:hover .gallery-caption {
-      opacity: 1;
-      transform: translateY(0);
-    }
->>>>>>> e1a75fccf7fcdbcbfc022b0f987d99833100a158
 
     /* Lightbox */
     .lightbox {
@@ -2098,7 +2034,6 @@
       </div>
       <div class="gallery-masonry fade-up">
 
-<<<<<<< HEAD
         <div class="gallery-item" data-caption="CTAC 2024 — conference reception, Monash University, Australia">
           <img src="monash1.jpeg" alt="CTAC 2024 conference reception, Monash University">
           <div class="gallery-caption">CTAC 2024, Monash University</div>
@@ -2107,16 +2042,6 @@
         <div class="gallery-item" data-caption="CTAC 2024 — with fellow delegates at sunset, Monash University">
           <img src="monash3.jpeg" alt="CTAC 2024 delegates, Monash University sunset">
           <div class="gallery-caption">CTAC 2024 Delegates</div>
-=======
-        <div class="gallery-item" data-caption="CTAC 2024 — Monash University, Australia">
-          <img src="gallery-1.jpg" alt="CTAC 2024 conference, Monash University">
-          <div class="gallery-caption">CTAC 2024, Monash University</div>
-        </div>
-
-        <div class="gallery-item" data-caption="Young Scientist Award ceremony, Chitrakoot">
-          <img src="gallery-2.jpg" alt="Young Scientist Award ceremony">
-          <div class="gallery-caption">Young Scientist Award</div>
->>>>>>> e1a75fccf7fcdbcbfc022b0f987d99833100a158
         </div>
 
         <div class="gallery-item" data-caption="Department of Mathematics team, IIT Ropar">
@@ -2124,7 +2049,6 @@
           <div class="gallery-caption">IIT Ropar — Department Team</div>
         </div>
 
-<<<<<<< HEAD
         <div class="gallery-item" data-caption="PhD degree conferral ceremony, PDPM IIITDM Jabalpur">
           <img src="iiit1.jpeg" alt="PhD degree conferral, IIITDM Jabalpur">
           <div class="gallery-caption">PhD Conferral, IIITDM Jabalpur</div>
@@ -2163,31 +2087,6 @@
         <div class="gallery-item" data-caption="CTAC 2024 — conference reception, Monash University">
           <img src="monash6.jpeg" alt="CTAC 2024 conference reception, Monash University">
           <div class="gallery-caption">CTAC 2024, Monash University</div>
-=======
-        <div class="gallery-item" data-caption="FIT India Cricket Tournament 2022 — century innings">
-          <img src="gallery-4.jpg" alt="Cricket tournament">
-          <div class="gallery-caption">FIT India Cricket 2022</div>
-        </div>
-
-        <div class="gallery-item" data-caption="All India NCC Shivaji Trail Trek, Kolhapur">
-          <img src="gallery-5.jpg" alt="NCC Shivaji Trail Trek">
-          <div class="gallery-caption">NCC Shivaji Trail Trek</div>
-        </div>
-
-        <div class="gallery-item" data-caption="Mother Tongue Poetry & Song Competition, IIT Ropar">
-          <img src="gallery-6.jpg" alt="Poetry and song competition">
-          <div class="gallery-caption">Poetry & Song, IIT Ropar</div>
-        </div>
-
-        <div class="gallery-item" data-caption="Workshop on Finite Volume and Spectral Methods, TIFR Bangalore">
-          <img src="gallery-7.jpg" alt="TIFR Bangalore workshop">
-          <div class="gallery-caption">TIFR Bangalore Workshop</div>
-        </div>
-
-        <div class="gallery-item" data-caption="ICAMM 2023, IIT Indore">
-          <img src="gallery-8.jpg" alt="ICAMM 2023 IIT Indore">
-          <div class="gallery-caption">ICAMM 2023, IIT Indore</div>
->>>>>>> e1a75fccf7fcdbcbfc022b0f987d99833100a158
         </div>
 
       </div>
@@ -2324,7 +2223,6 @@
     // landscapes get short cells (no cropping distortion). Very wide
     // panoramic photos (aspect ratio > 1.6) automatically span 2 columns
     // so group shots don't get squeezed into a narrow strip.
-<<<<<<< HEAD
    (function () {
   const ROW_PX = 10, GAP_PX = 16, COL_BASE_PX = 360;
   function sizeItem(item, img) {
@@ -2342,35 +2240,6 @@
     else img.addEventListener('load', () => sizeItem(item, img));
   });
 })();
-=======
-    (function () {
-      const ROW_PX = 10;   // matches grid-auto-rows in CSS
-      const GAP_PX = 16;   // matches gap in CSS
-      const COL_BASE_PX = 360; // approx column width used for ratio math (3-col grid)
-
-      function sizeItem(item, img) {
-        const ratio = img.naturalWidth / img.naturalHeight;
-        const isWide = ratio > 1.2;
-        item.classList.toggle('gallery-wide', isWide);
-
-        const colSpan = isWide ? 2 : 1;
-        const cellWidth = COL_BASE_PX * colSpan + GAP_PX * (colSpan - 1);
-        const cellHeight = cellWidth / ratio;
-        const rowSpan = Math.max(8, Math.round((cellHeight + GAP_PX) / (ROW_PX + GAP_PX / 10)));
-
-        item.style.gridRowEnd = `span ${rowSpan}`;
-      }
-
-      document.querySelectorAll('.gallery-item img').forEach(img => {
-        const item = img.closest('.gallery-item');
-        if (img.complete && img.naturalWidth) {
-          sizeItem(item, img);
-        } else {
-          img.addEventListener('load', () => sizeItem(item, img));
-        }
-      });
-    })();
->>>>>>> e1a75fccf7fcdbcbfc022b0f987d99833100a158
   </script>
 </body>
 
