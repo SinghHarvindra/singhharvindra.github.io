@@ -1000,6 +1000,135 @@
       font-weight: 500;
     }
 
+    /* ─── GALLERY ─────────────────────────────── */
+    .gallery-masonry {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 10px;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      position: relative;
+      grid-row-end: span 24;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+
+    .gallery-item.span-tall { grid-row-end: span 34; }
+    .gallery-item.span-wide { grid-column: span 2; grid-row-end: span 18; }
+    .gallery-item.span-short { grid-row-end: span 16; }
+
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-soft);
+      z-index: 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px 16px 14px;
+      font-family: 'Fraunces', serif;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--bg-soft);
+      background: linear-gradient(to top, rgba(26, 36, 56, 0.82) 0%, transparent 100%);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+      background: rgba(26, 36, 56, 0.93);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-figure {
+      max-width: 92vw;
+      max-height: 88vh;
+      text-align: center;
+    }
+
+    .lightbox-figure img {
+      max-width: 92vw;
+      max-height: 78vh;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .lightbox-caption {
+      margin-top: 16px;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: rgba(247, 244, 237, 0.92);
+    }
+
+    .lb-btn {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: var(--bg-soft);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .lb-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .lb-close { top: 28px; right: 32px; }
+    .lb-prev { left: 24px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 24px; top: 50%; transform: translateY(-50%); }
+
     /* ─── CONTACT ─────────────────────────────── */
     .contact-grid {
       display: grid;
@@ -1202,6 +1331,22 @@
         grid-template-columns: 1fr;
       }
 
+      .gallery-masonry {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-item.span-wide {
+        grid-column: span 2;
+      }
+
+      .lightbox {
+        padding: 20px;
+      }
+
+      .lb-close { top: 16px; right: 16px; }
+      .lb-prev { left: 8px; }
+      .lb-next { right: 8px; }
+
       .contact-grid {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -1233,6 +1378,16 @@
         padding: 28px 24px;
       }
     }
+
+    @media (max-width: 540px) {
+      .gallery-masonry {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item.span-wide {
+        grid-column: span 1;
+      }
+    }
   </style>
 </head>
 
@@ -1249,6 +1404,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#awards">Awards</a></li>
       <li><a href="#activities">Activities</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -1772,6 +1928,8 @@
               Directorate Uttarakhand.</div>
           </div>
         </div>
+      </div>
+    </div>
   </section>
 
   <!-- EXTRACURRICULAR ACTIVITIES -->
@@ -1862,7 +2020,7 @@
               by a Ph.D. scholar since the tournament's inception at IIITDM Jabalpur.</div>
           </div>
         </div>
-        <div class="award-item"> <!-- Now NCC CATC is a proper sibling -->
+        <div class="award-item">
           <div class="award-icon">🏕️</div>
           <div>
             <div class="award-title">NCC Combined Annual Training Camp (Pre-IGC)</div>
@@ -1879,8 +2037,73 @@
               Panhala, Khutalwadi, Shahuwadi, Pandharpani, Gajapur and Vishalgarh.</div>
           </div>
         </div>
+      </div>
+    </div>
   </section>
 
+  <!-- GALLERY -->
+  <section class="sec-alt" id="gallery">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag">In Pictures</div>
+        <h2 class="section-title">Photo <em>Gallery</em></h2>
+      </div>
+      <div class="gallery-masonry fade-up">
+
+        <div class="gallery-item span-tall" data-caption="CTAC 2024 — Monash University, Australia">
+          <img src="gallery-1.jpg" alt="CTAC 2024 conference, Monash University">
+          <div class="gallery-caption">CTAC 2024, Monash University</div>
+        </div>
+
+        <div class="gallery-item span-short" data-caption="Young Scientist Award ceremony, Chitrakoot">
+          <img src="gallery-2.jpg" alt="Young Scientist Award ceremony">
+          <div class="gallery-caption">Young Scientist Award</div>
+        </div>
+
+        <div class="gallery-item span-wide" data-caption="ANRF N-PDF fellowship at IIT Ropar">
+          <img src="gallery-3.jpg" alt="IIT Ropar campus">
+          <div class="gallery-caption">IIT Ropar</div>
+        </div>
+
+        <div class="gallery-item" data-caption="FIT India Cricket Tournament 2022 — century innings">
+          <img src="gallery-4.jpg" alt="Cricket tournament">
+          <div class="gallery-caption">FIT India Cricket 2022</div>
+        </div>
+
+        <div class="gallery-item span-tall" data-caption="All India NCC Shivaji Trail Trek, Kolhapur">
+          <img src="gallery-5.jpg" alt="NCC Shivaji Trail Trek">
+          <div class="gallery-caption">NCC Shivaji Trail Trek</div>
+        </div>
+
+        <div class="gallery-item span-short" data-caption="Mother Tongue Poetry & Song Competition, IIT Ropar">
+          <img src="gallery-6.jpg" alt="Poetry and song competition">
+          <div class="gallery-caption">Poetry & Song, IIT Ropar</div>
+        </div>
+
+        <div class="gallery-item span-wide" data-caption="Workshop on Finite Volume and Spectral Methods, TIFR Bangalore">
+          <img src="gallery-7.jpg" alt="TIFR Bangalore workshop">
+          <div class="gallery-caption">TIFR Bangalore Workshop</div>
+        </div>
+
+        <div class="gallery-item" data-caption="ICAMM 2023, IIT Indore">
+          <img src="gallery-8.jpg" alt="ICAMM 2023 IIT Indore">
+          <div class="gallery-caption">ICAMM 2023, IIT Indore</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lb-btn lb-close" id="lbClose" aria-label="Close">&times;</button>
+      <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+      <button class="lb-btn lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+      <figure class="lightbox-figure">
+        <img src="" alt="" id="lbImg">
+        <figcaption class="lightbox-caption" id="lbCaption"></figcaption>
+      </figure>
+    </div>
+  </section>
 
   <!-- CONTACT -->
   <section id="contact">
@@ -1963,6 +2186,38 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     });
+
+    // Gallery lightbox
+    (function () {
+      const items = Array.from(document.querySelectorAll('.gallery-item'));
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbCap = document.getElementById('lbCaption');
+      let current = 0;
+
+      function show(i) {
+        current = (i + items.length) % items.length;
+        const item = items[current];
+        const img = item.querySelector('img');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbCap.textContent = item.dataset.caption || '';
+      }
+      function open(i) { show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+      items.forEach((item, i) => item.addEventListener('click', () => open(i)));
+      document.getElementById('lbClose').addEventListener('click', close);
+      document.getElementById('lbNext').addEventListener('click', () => show(current + 1));
+      document.getElementById('lbPrev').addEventListener('click', () => show(current - 1));
+      lb.addEventListener('click', e => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') show(current + 1);
+        if (e.key === 'ArrowLeft') show(current - 1);
+      });
+    })();
   </script>
 </body>
 
