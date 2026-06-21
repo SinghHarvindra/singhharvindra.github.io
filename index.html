@@ -1002,15 +1002,15 @@
 
     /* ─── GALLERY ─────────────────────────────── */
     .gallery-masonry {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 10px;
-      gap: 16px;
+      column-count: 4;
+      column-gap: 16px;
     }
 
     .gallery-item {
       position: relative;
-      grid-row-end: span 24;
+      display: block;
+      break-inside: avoid;
+      margin-bottom: 16px;
       border-radius: var(--radius);
       overflow: hidden;
       cursor: pointer;
@@ -1019,10 +1019,6 @@
       box-shadow: var(--shadow-sm);
       transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
     }
-
-    .gallery-item.span-tall { grid-row-end: span 34; }
-    .gallery-item.span-wide { grid-column: span 2; grid-row-end: span 18; }
-    .gallery-item.span-short { grid-row-end: span 16; }
 
     .gallery-item:hover {
       transform: translateY(-3px);
@@ -1033,14 +1029,13 @@
 
     .gallery-item img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
       transition: transform 0.45s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.06);
+      transform: scale(1.04);
     }
 
     .gallery-caption {
@@ -1332,11 +1327,7 @@
       }
 
       .gallery-masonry {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .gallery-item.span-wide {
-        grid-column: span 2;
+        column-count: 2;
       }
 
       .lightbox {
@@ -1381,11 +1372,7 @@
 
     @media (max-width: 540px) {
       .gallery-masonry {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-item.span-wide {
-        grid-column: span 1;
+        column-count: 1;
       }
     }
   </style>
@@ -2050,17 +2037,17 @@
       </div>
       <div class="gallery-masonry fade-up">
 
-        <div class="gallery-item span-tall" data-caption="CTAC 2024 — Monash University, Australia">
+        <div class="gallery-item" data-caption="CTAC 2024 — Monash University, Australia">
           <img src="gallery-1.jpg" alt="CTAC 2024 conference, Monash University">
           <div class="gallery-caption">CTAC 2024, Monash University</div>
         </div>
 
-        <div class="gallery-item span-short" data-caption="Young Scientist Award ceremony, Chitrakoot">
+        <div class="gallery-item" data-caption="Young Scientist Award ceremony, Chitrakoot">
           <img src="gallery-2.jpg" alt="Young Scientist Award ceremony">
           <div class="gallery-caption">Young Scientist Award</div>
         </div>
 
-        <div class="gallery-item span-wide" data-caption="ANRF N-PDF fellowship at IIT Ropar">
+        <div class="gallery-item" data-caption="ANRF N-PDF fellowship at IIT Ropar">
           <img src="gallery-3.jpg" alt="IIT Ropar campus">
           <div class="gallery-caption">IIT Ropar</div>
         </div>
@@ -2070,17 +2057,17 @@
           <div class="gallery-caption">FIT India Cricket 2022</div>
         </div>
 
-        <div class="gallery-item span-tall" data-caption="All India NCC Shivaji Trail Trek, Kolhapur">
+        <div class="gallery-item" data-caption="All India NCC Shivaji Trail Trek, Kolhapur">
           <img src="gallery-5.jpg" alt="NCC Shivaji Trail Trek">
           <div class="gallery-caption">NCC Shivaji Trail Trek</div>
         </div>
 
-        <div class="gallery-item span-short" data-caption="Mother Tongue Poetry & Song Competition, IIT Ropar">
+        <div class="gallery-item" data-caption="Mother Tongue Poetry & Song Competition, IIT Ropar">
           <img src="gallery-6.jpg" alt="Poetry and song competition">
           <div class="gallery-caption">Poetry & Song, IIT Ropar</div>
         </div>
 
-        <div class="gallery-item span-wide" data-caption="Workshop on Finite Volume and Spectral Methods, TIFR Bangalore">
+        <div class="gallery-item" data-caption="Workshop on Finite Volume and Spectral Methods, TIFR Bangalore">
           <img src="gallery-7.jpg" alt="TIFR Bangalore workshop">
           <div class="gallery-caption">TIFR Bangalore Workshop</div>
         </div>
