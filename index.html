@@ -102,7 +102,7 @@
       padding: 18px 48px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       background: rgba(247, 244, 237, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -166,10 +166,10 @@
 
     /* ─── HERO ─────────────────────────────────── */
     .hero {
-      min-height: 100vh;
+      min-height: auto;
       display: flex;
-      align-items: center;
-      padding: 130px 0 90px;
+      align-items: flex-start;
+      padding: 120px 0 60px;
       position: relative;
     }
 
@@ -208,7 +208,7 @@
 
     .hero-inner {
       display: grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: 1fr 300px;
       gap: 80px;
       align-items: center;
     }
@@ -346,7 +346,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 40px 32px;
+      padding: 25px 25px;
       text-align: center;
       box-shadow: var(--shadow-md);
       position: relative;
@@ -365,8 +365,8 @@
     }
 
     .profile-photo {
-      width: 340px;
-      height: 340px;
+      width: 260px;
+      height: 260px;
       max-width: 100%;
       border-radius: 50%;
       object-fit: cover;
@@ -1448,39 +1448,6 @@
           <img src="photo.jpeg" alt="Dr. Harvindra Singh" class="profile-photo">
           <div class="profile-card-name">Dr. Harvindra Singh</div>
           <div class="profile-card-role">ANRF N-PDF Fellow, IIT Ropar</div>
-          <div class="profile-stat-grid">
-            <div class="profile-stat">
-              <div class="profile-stat-num">8+</div>
-              <div class="profile-stat-label">Publications</div>
-            </div>
-            <div class="profile-stat">
-              <div class="profile-stat-num">5+</div>
-              <div class="profile-stat-label">Conferences</div>
-            </div>
-            <div class="profile-stat">
-              <div class="profile-stat-num">7+</div>
-              <div class="profile-stat-label">Yrs Research</div>
-            </div>
-            <div class="profile-stat">
-              <div class="profile-stat-num"></div>
-              <div class="profile-stat-label"></div>
-            </div>
-          </div>
-          <div class="profile-social">
-            <a href="https://scholar.google.com/citations?user=uSFqUHAAAAAJ&hl=en&authuser=2" target="_blank"
-              rel="noopener" class="social-link">
-              <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 14l9-5-9-5-9 5 9 5zm0 2l-9-5v6l9 5 9-5v-6l-9 5z" />
-              </svg>
-              Google Scholar
-            </a>
-            <a href="https://orcid.org/0000-0002-3032-4642" target="_blank" rel="noopener" class="social-link">
-              <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.946-.947.946-.525 0-.946-.421-.946-.946 0-.516.421-.947.946-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.713 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z" />
-              </svg>
-              ORCID 0000-0002-3032-4642
-            </a>
             <a href="mailto:singh.harvindrahs@gmail.com" class="social-link">
               <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
