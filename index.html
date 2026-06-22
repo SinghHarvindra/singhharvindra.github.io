@@ -1001,45 +1001,56 @@
     }
 
     /* ─── GALLERY ─────────────────────────────── */
-   .gallery-masonry {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 10px;
-  gap: 16px;
+  /* ─── GALLERY ─────────────────────────────── */
+
+.gallery-masonry {
+  column-count: 3;
+  column-gap: 18px;
 }
 
-   .gallery-item {
+.gallery-item {
   position: relative;
   display: block;
-  grid-column: span 1;
+  break-inside: avoid;
+  margin-bottom: 18px;
   border-radius: var(--radius);
   overflow: hidden;
   cursor: pointer;
   border: 1px solid var(--border);
-  background: var(--surface-2);
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
-    .gallery-item.gallery-wide {
-      grid-column: span 2;
-    }
-
- .gallery-item img {
+.gallery-item.gallery-wide {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
-   .gallery-caption {
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.02);
+}
+
+.gallery-caption {
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   padding: 16px 16px 14px;
   font-family: 'Fraunces', serif;
   font-size: 0.84rem;
   font-weight: 500;
   color: var(--bg-soft);
-  background: linear-gradient(to top, rgba(26, 36, 56, 0.82) 0%, transparent 100%);
+  background: linear-gradient(
+    to top,
+   rgba(26, 36, 56, 0.82) 0%,
+    transparent 100%
+  );
   opacity: 0;
   transition: opacity 0.25s;
 }
@@ -1315,12 +1326,8 @@
         grid-template-columns: 1fr;
       }
 
-      .gallery-masonry {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .gallery-item.gallery-wide {
-        grid-column: span 2;
+       .gallery-masonry {
+    column-count: 2;
       }
 
       .lightbox {
@@ -1364,13 +1371,9 @@
     }
 
     @media (max-width: 540px) {
-      .gallery-masonry {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-item.gallery-wide {
-        grid-column: span 1;
-      }
+     .gallery-masonry {
+    column-count: 1;
+    }
     }
   </style>
 </head>
@@ -2036,17 +2039,22 @@
 
         <div class="gallery-item" data-caption="CTAC 2024 — conference reception, Monash University, Australia">
           <img src="monash1.jpeg" alt="CTAC 2024 conference reception, Monash University">
-          <div class="gallery-caption">CTAC 2024, Monash University</div>
+          <div class="gallery-caption">With Prof. C. Carstensen, CTAC 2024, Monash University, Australia</div>
+        </div>
+
+        <div class="gallery-item" data-caption="CTAC 2024 — conference reception, Monash University">
+          <img src="monash6.jpeg" alt="CTAC 2024 conference reception, Monash University">
+          <div class="gallery-caption">With Prof. Ricardo Ruiz Baier, CTAC 2024, Monash University</div>
         </div>
 
         <div class="gallery-item" data-caption="CTAC 2024 — with fellow delegates at sunset, Monash University">
           <img src="monash3.jpeg" alt="CTAC 2024 delegates, Monash University sunset">
-          <div class="gallery-caption">CTAC 2024 Delegates</div>
+          <div class="gallery-caption">CTAC 2024 Delegates -- Prof. Subhashis Chatterjee & Prof. Santimoy Kundu (IIT Dhanbad)</div>
         </div>
 
         <div class="gallery-item" data-caption="Department of Mathematics team, IIT Ropar">
           <img src="iitropar1.jpeg" alt="Department of Mathematics team, IIT Ropar">
-          <div class="gallery-caption">IIT Ropar — Department Team</div>
+          <div class="gallery-caption">Sahil's Farewell, IIT Ropar</div>
         </div>
 
         <div class="gallery-item" data-caption="PhD degree conferral ceremony, PDPM IIITDM Jabalpur">
@@ -2056,12 +2064,12 @@
 
         <div class="gallery-item" data-caption="With supervisor Dr. Lokendra Balyan, IIITDM Jabalpur">
           <img src="iiit2.jpeg" alt="With supervisor Dr. Lokendra Balyan, IIITDM Jabalpur">
-          <div class="gallery-caption">With Dr. Lokendra Balyan</div>
+          <div class="gallery-caption">With PhD supervisor Dr Lokendra Balyan</div>
         </div>
 
         <div class="gallery-item" data-caption="New Year gathering with colleagues, IIT Ropar">
-          <img src="iitropar2.jpeg" alt="New Year gathering with colleagues, IIT Ropar">
-          <div class="gallery-caption">New Year, IIT Ropar</div>
+          <img src="iitropar2.jpeg" alt="Gathering with colleagues, IIT Ropar">
+          <div class="gallery-caption">Publication treat, IIT Ropar</div>
         </div>
 
         <div class="gallery-item" data-caption="Team lunch with colleagues, IIT Ropar">
@@ -2081,12 +2089,7 @@
 
         <div class="gallery-item" data-caption="CTAC 2024 — conference reception, Monash University">
           <img src="monash2.jpeg" alt="CTAC 2024 conference reception, Monash University">
-          <div class="gallery-caption">CTAC 2024, Monash University</div>
-        </div>
-
-        <div class="gallery-item" data-caption="CTAC 2024 — conference reception, Monash University">
-          <img src="monash6.jpeg" alt="CTAC 2024 conference reception, Monash University">
-          <div class="gallery-caption">CTAC 2024, Monash University</div>
+          <div class="gallery-caption">With Prof. C. Carstensen, CTAC 2024, Monash University, Australia</div>
         </div>
 
       </div>
@@ -2217,29 +2220,6 @@
         if (e.key === 'ArrowLeft') show(current - 1);
       });
     })();
-
-    // Gallery auto-sizing: measures each photo's real aspect ratio and
-    // sets its grid row-span to match, so portraits get tall cells and
-    // landscapes get short cells (no cropping distortion). Very wide
-    // panoramic photos (aspect ratio > 1.6) automatically span 2 columns
-    // so group shots don't get squeezed into a narrow strip.
-   (function () {
-  const ROW_PX = 10, GAP_PX = 16, COL_BASE_PX = 360;
-  function sizeItem(item, img) {
-    const ratio = img.naturalWidth / img.naturalHeight;
-    item.classList.toggle('gallery-wide', ratio > 1.2);
-    const colSpan = ratio > 1.2 ? 2 : 1;
-    const cellWidth = COL_BASE_PX * colSpan + GAP_PX * (colSpan - 1);
-    const cellHeight = cellWidth / ratio;
-    const rowSpan = Math.max(8, Math.round((cellHeight + GAP_PX) / (ROW_PX + GAP_PX / 10)));
-    item.style.gridRowEnd = `span ${rowSpan}`;
-  }
-  document.querySelectorAll('.gallery-item img').forEach(img => {
-    const item = img.closest('.gallery-item');
-    if (img.complete && img.naturalWidth) sizeItem(item, img);
-    else img.addEventListener('load', () => sizeItem(item, img));
-  });
-})();
   </script>
 </body>
 
